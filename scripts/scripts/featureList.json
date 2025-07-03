@@ -1,0 +1,6 @@
+[
+  { "role": "pro", "feature_name": "Dashboard", "route": "/dashboard", "external": false },
+  { "role": "pro", "feature_name": "Contacts", "route": "/contacts", "external": false },
+  { "role": "pro", "feature_name": "Content AI", "route": "https://content-ai.videoremix.io/", "external": true },
+  { "role": "whitelabel", "feature_name": "White Label Platform Management", "route": "https://moonlit-tarsier-239e70.netlify.app", "external": true }
+]
