@@ -1,0 +1,274 @@
+For each of the following prompts, if the corresponding SmartCRM component already exists, update and extend it instead of creating a new one. Do not use any mock data or mock logic—always integrate with real Neon DB schemas and maintain SmartCRM’s current design, UI components, and features.
+
+**Communication Systems**
+
+1. **Real SMS & WhatsApp Messaging**
+
+````
+On Replit, scaffold or extend the existing `SMSWhatsAppMessaging` component that:   
+• Reuses SmartCRM’s `MessageList` and `ChatInput` components for rendering and input.   
+• Integrates open‑source libraries for messaging (e.g., `smpp` npm package for SMS gateway, `whatsapp-web.js` or `Baileys` for WhatsApp) with environment variables for host, port, credentials.   
+• Provides a plugin architecture to optionally enable Twilio by passing `ACCOUNT_SID` and `AUTH_TOKEN` (or API Key) via settings.   
+• Persists messages to Neon DB via Replit’s database schemas in real time, updating SmartCRM’s global chat state.   
+• Maintains current threading, read receipts, and delivery indicators using SmartCRM’s existing state management.   
+• Adheres to SmartCRM’s Tailwind design tokens (colors, spacing, typography) and accessibility guidelines.```
+
+2. **Video Calling Capabilities**  
+````
+
+In Replit, build or extend `VideoCallWidget` that:
+• Composes with SmartCRM’s `Modal` and `ToolbarButton` UI primitives.
+• Utilizes WebRTC APIs to negotiate peer connections, ICE candidates, and media streams.
+• Streams local and remote video within SmartCRM’s 16:9 `Card` layout, with controls (mute, camera toggle, end call) matching existing iconography.
+• Hooks into SmartCRM’s presence system to show online/offline status.
+• Emits call events to Neon DB via Replit’s schemas and updates `CallHistory` records.\`\`\`
+
+3. **Email Tracking & Analytics**
+
+````
+On Replit, create or extend `EmailAnalyticsDashboard` component that:   
+• Reuses `MetricsCard` and `LineChart` components from SmartCRM’s chart library.   
+• Listens to SendGrid webhooks via a serverless function, updating Neon DB tables for opens, clicks, and bounces through Replit’s schema API.   
+• Displays cumulative and time-series metrics with SmartCRM’s color palette and tooltips.   
+• Filters by campaign, recipient domain, and date range using SmartCRM’s `FilterBar` UI.   
+• Integrates with existing `NotificationCenter` to alert on spikes or anomalies.```
+
+4. **Voicemail & Call Recording**  
+````
+
+Generate or extend `VoicemailRecorder` on Replit that:
+• Extends SmartCRM’s `AudioPlayer` and `UploadButton` components.
+• Uses the browser’s built‑in MediaRecorder API (or a WebRTC recorder like `peerjs-media-recorder`) to capture call audio locally and store files.
+• Provides optional integration with Twilio Voice SDK by toggling Twilio mode in settings (use environment variables `ACCOUNT_SID`/`AUTH_TOKEN`).
+• Saves audio files to Replit Drive and persists recording metadata and transcript references to Neon DB via Replit schemas.
+• Displays recordings in `CallDetailView` with playback, pause, and download controls.
+• Transcribes recordings via OpenAI Whisper and shows transcripts in‑line with collapsible sections matching SmartCRM’s accordion style.\`\`\`
+
+---
+
+**File Management & Documents**
+
+1. **Document Upload & Storage**
+
+````
+On Replit, scaffold or extend `DocumentManager` that:   
+• Uses SmartCRM’s `FileList` and `UploadDropzone` components.   
+• Saves uploaded documents to Replit Drive and tracks file metadata in Neon DB via Replit schemas.   
+• Renders previews with SmartCRM’s `Thumbnail` component and supports in‑browser PDF and image previews within a `Drawer`.```
+
+2. **Contract & Proposal Templates**  
+````
+
+Build or extend `TemplateLibrary` page in Replit that:
+• Leverages SmartCRM’s `CardGrid` layout to display template previews.
+• Reads HTML/CSS templates stored in Replit Drive and metadata from Neon DB schemas.
+• Allows selection and customization of variables (client name, date) with `FormControl` inputs.
+• Generates downloadable PDFs via `@react-pdf/renderer`, matching SmartCRM’s brand fonts and colors.\`\`\`
+
+3. **Digital Signature Integration**
+
+````
+On Replit, create or extend `SignaturePad` component that:   
+• Incorporates SmartCRM’s `Modal` wrapper and `Button` styles.   
+• Integrates DocuSign’s embedded signing ceremony using OAuth for signer authentication.   
+• Stores signature envelope metadata in Neon DB via Replit schemas and updates `DocumentStatus` in real time.```
+
+4. **File Sharing Capabilities**  
+````
+
+Scaffold or extend `FileShareModal` in Replit that:
+• Uses SmartCRM’s `Modal` and `InputGroup` components.
+• Generates secure shareable URLs for Replit Drive files with configurable expiry tracked in Neon DB.
+• Displays link and QR code using `QRCode` component, with copy and email‑share buttons reusing SmartCRM’s `IconButton`.\`\`\`
+
+---
+
+**Advanced Reporting & Analytics**
+
+1. **Sales Performance Dashboard**
+
+````
+On Replit, build or extend `SalesPerformanceDashboard` that:   
+• Reuses SmartCRM’s `KPIWidget` and `DataTable` components.   
+• Fetches real‑time sales data from Neon DB using Replit’s schema queries.   
+• Renders bar, line, and leaderboard tables with SmartCRM’s Chart.js wrapper, using brand‑aligned legends and tooltips.```
+
+2. **Revenue Forecasting**  
+````
+
+Create or extend `ForecastChart` in Replit that:
+• Uses SmartCRM’s `ChartContainer` and `Toggle` components.
+• Calls Gemini ML endpoint with historical pipeline data pulled from Neon DB.
+• Overlays forecast series and confidence intervals on historical data charts, fitting SmartCRM’s color scheme and interactive hover styles.\`\`\`
+
+3. **Pipeline Analytics**
+
+````
+Implement or extend `PipelineAnalytics` page in Replit that:   
+• Leverages SmartCRM’s `FunnelChart` and `StageTable`.   
+• Calculates conversion rates per stage using Neon DB aggregations via Replit schemas.   
+• Provides drill‑down by clicking funnel segments, reusing existing pagination and filter controls.```
+
+4. **ROI Tracking for AI Automations**  
+````
+
+Scaffold or extend `AutomationROI` component on Replit that:
+• Integrates SmartCRM’s `SummaryCard` and `TrendLine` chart.
+• Aggregates metrics on agent runs (time saved, deals influenced) from Neon DB logs via Replit schemas.
+• Displays ROI calculations and allows export via CSV using `CSVExporter`.\`\`\`
+
+---
+
+**Workflow Automation Builder**
+
+1. **Visual Workflow Designer**
+
+````
+On Replit, create or extend `WorkflowDesigner` using `react-flow` that:   
+• Matches SmartCRM’s node and edge styles (rounded rectangles, brand colors).   
+• Supports drag‑and‑drop of existing trigger/action nodes from `ToolboxPanel`.   
+• Saves and retrieves workflow definitions in Neon DB using Replit schemas, reusing SmartCRM’s JSON editor UI for advanced edits.```
+
+2. **Trigger-Based Automation Rules**  
+````
+
+Scaffold or extend `RuleEditor` on Replit that:
+• Utilizes SmartCRM’s `FormSection` and `Dropdown` components.
+• Lets users define triggers (e.g., `onDealClosed`) with event picker, and attach action sequences.
+• Persists rules via Neon DB stored procedures exposed through Replit schemas and shows real‑time validation using SmartCRM’s `Alert` system.\`\`\`
+
+3. **Multi-Step Approval Processes**
+
+````
+Generate or extend `ApprovalChain` in Replit that:   
+• Uses SmartCRM’s `StepList` and `UserSelect`.   
+• Configures each approval step with assigned users, due dates, and automated email notifications via SendGrid.   
+• Reflects current process status in `ApprovalStatus` badge and history timeline stored in Neon DB.```
+
+4. **Lead Nurturing Sequences**  
+````
+
+Implement or extend `NurtureSequenceBuilder` in Replit that:
+• Reuses SmartCRM’s `Timeline` and `ActionCard`.
+• Allows drag‑and‑drop of email/SMS/voicemail steps with delay pickers.
+• Saves sequences to Neon DB via Replit schemas and integrates with AI Agent scheduler for execution.\`\`\`
+
+---
+
+**External Integrations**
+
+1. **Live Composio API**
+
+````
+In Replit, set up or extend `ComposioConnector` service that:   
+• Loads API keys from Replit secrets and SmartCRM’s encrypted schema storage.   
+• Authenticates with Composio endpoints to fetch real‑time lead insights.   
+• Streams data into SmartCRM’s `InsightPanel` component, preserving existing pagination and sorting.```
+
+2. **Email Service Providers**  
+````
+
+Scaffold or extend `EmailProviderConfig` in Replit that:
+• Uses `OAuthButton` and `FormField` from SmartCRM.
+• Connects SendGrid and Mailgun via OAuth or API key, with test‑send functionality.
+• Stores credentials securely in Neon DB using Replit schemas and updates SmartCRM’s `OutboundSettings`.\`\`\`
+
+3. **Calendar Integrations**
+
+````
+Build or extend `CalendarSync` component in Replit that:   
+• Leverages SmartCRM’s `ConnectButton` and `EventList`.   
+• Authorizes Google and Outlook using OAuth2 flows.   
+• Displays upcoming events and supports creating events through SmartCRM’s `EventForm`, storing sync metadata in Neon DB.```
+
+4. **Social Media APIs**  
+````
+
+Create or extend `SocialPublisher` in Replit that:
+• Integrates with Facebook and X using SmartCRM’s `IntegrationCard`.
+• Allows scheduling posts, fetching engagement metrics, and displays status using `StatusBadge`.
+• Stores post history in Neon DB via Replit schemas, accessible via `SocialHistoryTable`.\`\`\`
+
+---
+
+**Mobile Optimization**
+
+1. **Responsive Layouts**
+
+````
+On Replit, update global `Layout` component to:   
+• Use CSS grid with responsive breakpoints (`sm`, `md`, `lg`, `xl`).   
+• Reuse SmartCRM’s `Container` and `Stack` components to ensure consistent margins and padding on mobile.```
+
+2. **Touch-Friendly Interfaces**  
+````
+
+Generate or extend `TouchMenu` in Replit that:
+• Uses SmartCRM’s `BottomSheet` and `IconList` for mobile navigation.
+• Ensures tappable areas are at least 44px square, per design guidelines.
+• Animates open/close with existing `slideUp` transition classes.\`\`\`
+
+3. **Progressive Web App**
+
+````
+Scaffold PWA support in Replit by:   
+• Adding `service-worker.js` with Workbox precaching strategies.   
+• Updating `manifest.json` to include SmartCRM’s icons and theme colors.   
+• Configuring Next.js `_document.js` to register the service worker and meta tags.```
+
+---
+
+**Data Management Tools**
+
+1. **CSV Import/Export**  
+````
+
+On Replit, build or extend `CSVImporterExporter` that:
+• Uses SmartCRM’s `Wizard` and `Table` for mapping CSV columns to fields.
+• Validates data client‑side with schema rules and displays errors via `InlineError`.
+• Sends bulk updates to Neon DB via Replit schema RPC and tracks progress with `ProgressBar`.\`\`\`
+
+2. **Data Migration Tools**
+
+````
+Create or extend `MigrationTool` page in Replit that:   
+• Connects to legacy endpoints with `ApiClient`.   
+• Allows preview of field mappings and sample records in a `DataPreviewTable`.   
+• Executes migration jobs via background worker and shows logs in `LogViewer`, storing job status in Neon DB.```
+
+3. **Backup & Restore**  
+````
+
+Implement or extend `BackupManager` in Replit that:
+• Uses Neon DB backups features via Replit’s schema interfaces to trigger exports.
+• Lists available backups in `BackupList` and restores on user command with confirmation modals.
+• Shows status notifications via `Toast`.\`\`\`
+
+---
+
+**Lead Management Enhancement**
+
+1. **Lead Capture Forms**
+
+````
+On Replit, scaffold or extend `LeadCaptureForm` that:   
+• Uses SmartCRM’s `FormField` and `SubmitButton`.   
+• Posts directly to SmartCRM’s public API backed by Neon DB schemas, handling validation and errors.   
+• Returns a shareable embed snippet and preview using `CodeBlock`.```
+
+2. **Automated Lead Scoring**  
+````
+
+Create or extend `LeadScorer` service and `LeadScoreBadge` component in Replit that:
+• Calls OpenAI/Gemini scoring endpoint with lead attributes.
+• Stores and displays scores in real‑time on the `LeadDetail` page using Neon DB.
+• Applies SmartCRM’s risk‑level color codes and updates analytics dashboards.\`\`\`
+
+3. **Lead Routing & Assignment**
+
+````
+Generate or extend `LeadAssignment` component in Replit that:   
+• Reuses `Dropdown`, `AvatarList`, and `ActivityLog`.   
+• Implements capacity‑based auto‑routing rules, logs assignment history in Neon DB, and allows manual override.```
+
+````

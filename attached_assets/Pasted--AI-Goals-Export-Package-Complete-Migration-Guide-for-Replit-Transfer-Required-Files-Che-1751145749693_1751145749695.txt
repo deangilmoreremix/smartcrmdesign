@@ -1,0 +1,107 @@
+# AI Goals Export Package
+## Complete Migration Guide for Replit Transfer
+
+### 📋 Required Files Checklist
+
+#### Core AI Goals Components
+```
+client/src/components/
+├── InteractiveGoalCard.tsx          (410 lines)
+├── GoalExecutionModal.tsx           (964 lines) 
+├── InteractiveGoalExplorer.tsx      (300+ lines)
+├── ComposioIntegrationsModal.tsx    (400+ lines)
+└── Pages/AIGoalsPage.tsx            (200+ lines)
+```
+
+#### Supporting Files
+```
+client/src/
+├── types/goals.ts                   (Goal interface definitions)
+├── services/composioService.ts      (Composio API integration)
+├── utils/llm/mcpClient.ts          (MCP client for AI)
+├── agents/AgentOrchestrator.ts     (Multi-agent coordination)
+├── lib/gemmaAgentOptimizer.ts      (Gemma AI optimization)
+└── data/aiGoals.ts                 (50+ predefined goals)
+```
+
+#### Backend Files
+```
+server/
+├── composio.ts                     (Server-side Composio service)
+└── routes.ts                       (API endpoints - specific sections)
+```
+
+#### Dependencies (package.json additions)
+```json
+{
+  "@google/generative-ai": "latest",
+  "composio-core": "latest", 
+  "@radix-ui/react-dialog": "latest",
+  "@radix-ui/react-switch": "latest",
+  "@radix-ui/react-tabs": "latest",
+  "lucide-react": "latest",
+  "class-variance-authority": "latest",
+  "tailwind-merge": "latest"
+}
+```
+
+#### Environment Variables Required
+```env
+GEMINI_API_KEY=your_gemini_key
+OPENAI_API_KEY=your_openai_key
+COMPOSIO_API_KEY=your_composio_key (optional)
+```
+
+### 🚀 Migration Steps
+
+1. **Copy Core Components** - Transfer all files from checklist above
+2. **Install Dependencies** - Add required packages to package.json
+3. **Add Environment Variables** - Set up API keys in new Replit
+4. **Update Imports** - Ensure all import paths match your project structure
+5. **Test Integration** - Verify AI Goals page loads and functions
+
+### 🔧 Key Integration Points
+
+- **Navigation:** Add "AI Goals" to your main navigation menu
+- **AI Tools:** Integrate with existing AIToolsProvider if present
+- **Database:** No additional database tables required
+- **Styling:** Uses Tailwind CSS with Radix UI components
+
+### 📁 Quick Copy Commands
+
+```bash
+# Copy core components
+cp -r client/src/components/InteractiveGoal* /new-project/client/src/components/
+cp -r client/src/components/GoalExecution* /new-project/client/src/components/
+cp -r client/src/components/ComposioIntegrations* /new-project/client/src/components/
+cp -r client/src/components/Pages/AIGoalsPage.tsx /new-project/client/src/components/Pages/
+
+# Copy supporting files
+cp -r client/src/types/goals.ts /new-project/client/src/types/
+cp -r client/src/services/composioService.ts /new-project/client/src/services/
+cp -r client/src/data/aiGoals.ts /new-project/client/src/data/
+```
+
+### ⚠️ Important Notes
+
+- **AI Models:** Uses both Gemini and OpenAI APIs for optimal performance
+- **Real Integrations:** Composio enables actual LinkedIn, email, and social media actions
+- **Demo Mode:** All components work in demo mode without API keys
+- **Responsive:** Fully mobile-responsive design
+- **Accessibility:** Built with Radix UI for screen reader support
+
+### 🎯 Testing Checklist After Migration
+
+- [ ] AI Goals page loads without errors
+- [ ] Goal cards display with hover effects
+- [ ] Goal execution modal opens and shows multi-agent coordination
+- [ ] Composio integrations modal displays available tools
+- [ ] Demo mode execution works without API keys
+- [ ] Live mode works with proper API keys configured
+
+### 📞 Troubleshooting
+
+**Import Errors:** Check that all file paths match your project structure
+**Missing Dependencies:** Ensure all packages from the dependency list are installed
+**API Errors:** Verify environment variables are properly set
+**Styling Issues:** Confirm Tailwind CSS and Radix UI are configured

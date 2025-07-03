@@ -1,0 +1,59 @@
+# 🚀 Simple AI Goals Transfer Guide
+
+## Method 1: Quick Manual Copy (Recommended)
+
+### Step 1: Install Dependencies
+In your new Replit, run:
+```bash
+npm install @google/generative-ai composio-core @radix-ui/react-dialog @radix-ui/react-switch @radix-ui/react-tabs lucide-react class-variance-authority tailwind-merge
+```
+
+### Step 2: Copy Core Files (4 files total)
+Just copy these 4 main component files from this project to your new one:
+
+1. **InteractiveGoalCard.tsx** → `client/src/components/InteractiveGoalCard.tsx`
+2. **GoalExecutionModal.tsx** → `client/src/components/GoalExecutionModal.tsx` 
+3. **ComposioIntegrationsModal.tsx** → `client/src/components/ComposioIntegrationsModal.tsx`
+4. **AIGoalsPage.tsx** → `client/src/components/Pages/AIGoalsPage.tsx`
+
+### Step 3: Copy Supporting Files
+1. **goals.ts** → `client/src/types/goals.ts` (from EXPORT_2_GOALS_TYPES.txt)
+2. Add the 50+ AI goals data (see EXPORT_4_AI_GOALS_DATA.txt below)
+
+### Step 4: Add to Navigation
+Add this to your main navigation:
+```jsx
+<Link href="/ai-goals" className="nav-link">
+  AI Goals
+</Link>
+```
+
+### Step 5: Set Environment Variables
+```env
+GEMINI_API_KEY=your_key_here
+OPENAI_API_KEY=your_key_here
+```
+
+## Method 2: Git Clone (Alternative)
+You can also fork this entire Replit and just copy the files you need.
+
+## Method 3: Download Individual Files
+I've created complete export files with all the code:
+- COMPLETE_InteractiveGoalCard.txt (410 lines)
+- COMPLETE_GoalExecutionModal_Part1.txt (500 lines)
+- COMPLETE_GoalExecutionModal_Part2.txt (464 lines)
+
+## ✅ What You Get:
+- 50+ business AI goals across 8 categories
+- Real-time multi-agent execution with live tracking
+- Composio integrations for LinkedIn, Email, Social Media
+- Interactive goal cards with hover effects and detailed views
+- Demo mode (works without API keys) + Live mode (real integrations)
+
+## 🎯 Testing After Transfer:
+1. Navigate to `/ai-goals` page
+2. Try hovering over goal cards
+3. Click "Start Interactive Demo" on any goal
+4. Verify the execution modal shows agent coordination
+
+That's it! The components are self-contained and will work immediately.

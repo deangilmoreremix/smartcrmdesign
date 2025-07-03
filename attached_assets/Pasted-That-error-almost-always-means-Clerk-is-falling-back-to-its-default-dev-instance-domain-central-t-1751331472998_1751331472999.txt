@@ -1,0 +1,72 @@
+That error almost always means Clerk is falling back to its default “dev instance” domain (central-tortoise-21.clerk.accounts.dev) instead of your custom one—and then the JS doesn’t load correctly. To fix it, you need to explicitly tell Clerk:
+
+Which Frontend API you’re using,
+
+Where to load the clerk-js bundle from, and
+
+(If you’re hosting your Account Portal on a separate subdomain) that you’re in “satellite” mode.
+
+1. Update your .env.local (project root)
+bash
+Copy
+Edit
+# 1) Your publishable key
+VITE_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuc21hcnQtY3JtLnZpZGVvcmVtaXguaW8k
+
+# 2) Point Clerk at your custom Frontend API (no https://)
+VITE_CLERK_FRONTEND_API=clerk.smart-crm.videoremix.io
+
+# 3) Override where clerk-js is loaded from
+#    (this must match your Frontend API domain)
+VITE_CLERK_JS_URL=https://clerk.smart-crm.videoremix.io/npm/@clerk/clerk-js@5/dist/clerk.browser.js
+
+# 4) If your account portal lives on accounts.smart-crm… you need satellite mode:
+VITE_CLERK_DOMAIN=smart-crm.videoremix.io
+VITE_CLERK_IS_SATELLITE=true
+Always restart your dev server after changing .env.local.
+
+2. Wire them into <ClerkProvider>
+In your src/main.jsx (or index.jsx), make sure you pass the two new props:
+
+tsx
+Copy
+Edit
+import ReactDOM from 'react-dom/client'
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  RedirectToSignIn
+} from '@clerk/clerk-react'
+import App from './App'
+
+const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY!
+const frontendApi    = import.meta.env.VITE_CLERK_FRONTEND_API!
+const jsUrl          = import.meta.env.VITE_CLERK_JS_URL!
+
+if (!publishableKey || !frontendApi || !jsUrl) {
+  throw new Error('Missing one of VITE_CLERK_PUBLISHABLE_KEY, VITE_CLERK_FRONTEND_API, or VITE_CLERK_JS_URL')
+}
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <ClerkProvider
+    publishableKey={publishableKey}
+    frontendApi={frontendApi}
+    clerkJSUrl={jsUrl}
+  >
+    <SignedIn><App /></SignedIn>
+    <SignedOut><RedirectToSignIn /></SignedOut>
+  </ClerkProvider>
+)
+3. Verify
+Open your browser DevTools → Network tab.
+
+Reload the page and look for a request to
+
+bash
+Copy
+Edit
+https://clerk.smart-crm.videoremix.io/npm/@clerk/clerk-js@5/dist/clerk.browser.js
+If it’s still hitting central-tortoise-21.clerk.accounts.dev, your env vars aren’t being picked up (check prefixes & that .env.local is in your project root).
+
+Once Clerk loads from your custom domain, the “Something went wrong initializing Clerk” error will disappear.

@@ -1,0 +1,142 @@
+import { SignIn, useUser } from '@clerk/clerk-react';
+import { Navigate, Link } from 'react-router-dom';
+
+
+const Login = () => {
+  const { isSignedIn } = useUser();
+
+  if (isSignedIn) {
+    return <Navigate to="/dashboard" />;
+  }
+
+  return (
+
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 flex flex-col justify-center items-center">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Sign in to your account
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
+              create a new account
+            </Link>
+          </p>
+        </div>
+        {/* Renders your styled Clerk sign-in form */}
+        <SignIn
+          signUpUrl='/register'
+          appearance={{
+            variables: {
+              fontFamily: 'inherit',
+              colorPrimary: '#2563EB'
+            },
+            elements: {
+              formButtonPrimary: 'text-gray-400 hover:text-gray-500 focus:outline-none',
+              formFieldInput: 'appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm',
+              formFieldInputMasked: 'appearance-none rounded-none relative block w-full px-3 py-3 pl-10 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm',
+              // more class overrides if needed
+            }
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+12:39
+// src/Register.tsx
+import React from 'react';
+import { SignUp, useUser } from '@clerk/clerk-react';
+import { Navigate } from 'react-router-dom';
+
+const Register: React.FC = () => {
+  const { isSignedIn } = useUser();
+
+  if (isSignedIn) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Create your account
+        </h2>
+        <p className="text-center text-sm text-gray-600">
+          Or{' '}
+          <a href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+            sign in to your existing account
+          </a>
+        </p>
+        <SignUp
+          path="/register"
+          routing="path"
+          signInUrl="/login"
+          redirectUrl="/dashboard"
+          appearance={{
+            variables: {
+              fontFamily: 'inherit',
+              colorPrimary: '#2563EB',
+            },
+            elements: {
+              formButtonPrimary:
+                'group w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:outline-offset-2 focus:ring-blue-500',
+              formFieldInput:
+                'appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
+              formFieldInputMasked:
+                'appearance-none rounded-none relative block w-full px-3 py-3 pl-10 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
+            }
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Register;
+
+
+Puja
+  12:50 AM
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+import { AIToolsProvider } from './components/AIToolsProvider.tsx';
+import { ClerkProvider } from '@clerk/clerk-react';
+import { BrandingProvider } from './branding/BrandingContext.tsx';
+
+// Create root and render app immediately without any delays or deferment
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+        <BrandingProvider>
+      <AIToolsProvider>
+        <App />
+      </AIToolsProvider>
+      </BrandingProvider>
+    </ClerkProvider>
+  </StrictMode>
+);
+
+// Single source of truth for page load handling - avoid duplication with index.html
+window.addEventListener('DOMContentLoaded', () => {
+  // Mark content as ready for initial display
+  document.documentElement.classList.add('content-ready');
+});
+
+// When fully loaded, complete the transition
+window.addEventListener('load', () => {
+  // Add page-loaded class to html element
+  document.documentElement.classList.add('page-loaded');
+  
+  // Remove the loader once everything is ready
+  const loader = document.getElementById('initial-loader');
+  if (loader) {
+    loader.classList.add('hide-loader');
+    setTimeout(() => loader.remove(), 300);
+  }
+});

@@ -1,0 +1,97 @@
+AI Goals Page Components
+1. Main Page Layout (AIGoalsPage.tsx)
+// Clean layout with gradient header, tips card, and embedded goal explorer
+<div className="p-6 space-y-6">
+  {/* Header with brain icon and gradient background */}
+  <div className="flex items-center gap-3">
+    <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white">
+      <Brain className="h-6 w-6" />
+    </div>
+    <h1 className="text-3xl font-bold text-gray-900">AI Goals</h1>
+  </div>
+  
+  {/* Tips card with gradient background */}
+  <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-100">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+      {/* Feature highlights */}
+    </div>
+  </Card>
+</div>
+2. Interactive Goal Explorer (InteractiveGoalExplorer.tsx)
+Main Features:
+
+Large title with floating animations: 6xl font with animated sparkles and brain icons
+Live Stats Dashboard: 6-panel metrics with real-time updates
+Advanced Search & Filters: Category buttons, priority/complexity filters
+Goal Grid: Responsive 3-column layout with animated cards
+Quick Actions: Dark gradient panel with bulk execution options
+Key Design Elements:
+
+// Animated header with floating icons
+<h1 className="text-6xl font-bold text-gray-900 mb-6">
+  Interactive AI Goal Explorer
+</h1>
+<div className="absolute -top-4 -right-4 animate-float">
+  <Sparkles className="h-12 w-12 text-blue-600" />
+</div>
+// Live stats dashboard with gradient background
+<div className="bg-gradient-to-br from-blue-50 to-indigo-50 backdrop-blur-xl rounded-2xl border border-blue-200 p-8">
+  <div className="grid md:grid-cols-6 gap-6">
+    {/* 6 metric cards with different color themes */}
+  </div>
+</div>
+// Category filter buttons with hover effects
+<button className="p-4 rounded-xl transition-all duration-300 hover:scale-105 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+  {category.name}
+</button>
+3. Individual Goal Cards (InteractiveGoalCard.tsx)
+Visual Features:
+
+Hover animations: Scale transforms and shadow effects
+Execution progress bars: Animated gradients during execution
+Priority badges: Color-coded (red/yellow/green)
+Live metrics: Real-time value updates
+Agent chips: Purple-themed AI agent indicators
+Detailed expansion: Collapsible sections with additional info
+Design Highlights:
+
+// Card with hover effects and execution state
+<div className={`relative group cursor-pointer transition-all duration-500 transform ${
+  isHovered ? 'scale-105 z-10' : ''
+} ${isExecuting ? 'ring-2 ring-blue-500/50' : ''}`}>
+// Animated background pattern
+<div className="absolute inset-0 opacity-5">
+  <div style={{
+    backgroundImage: 'radial-gradient(circle at 25% 25%, #3b82f6 1px, transparent 1px)',
+    backgroundSize: '20px 20px'
+  }}></div>
+</div>
+// Action buttons with gradient backgrounds
+<button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:scale-105 shadow-lg">
+  <Play className="h-5 w-5" />
+  Start Interactive Demo
+</button>
+4. CSS Animations
+Add these to your index.css:
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+5. Color Scheme
+Primary: Blue to purple gradients (from-blue-600 to-purple-600)
+Success: Green variants (text-green-600, bg-green-100)
+Warning: Orange/red variants (from-red-600 to-orange-600)
+Categories: 8 different color themes for goal categories
+Backgrounds: Subtle gradients (from-gray-50 to-blue-50)
+The design features a modern, interactive interface with smooth animations, real-time metrics, and a comprehensive filtering system that makes it easy to browse and execute 58+ predefined business goals.

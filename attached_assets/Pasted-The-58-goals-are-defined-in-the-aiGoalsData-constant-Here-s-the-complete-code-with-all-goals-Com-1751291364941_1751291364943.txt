@@ -1,0 +1,743 @@
+The 58+ goals are defined in the aiGoalsData constant. Here's the complete code with all goals:
+
+Complete Goals Data (data/goalsData.ts)
+import { Goal, GoalCategory } from '../types/goals';
+export const aiGoalsData: GoalCategory[] = [
+  {
+    id: 'sales',
+    name: 'Sales',
+    description: 'Revenue generation and deal closing',
+    icon: 'Target',
+    color: 'from-blue-500 to-cyan-500',
+    goals: [
+      {
+        id: 'qualify-leads',
+        title: 'Qualify High-Value Leads',
+        description: 'Analyze and score incoming leads using AI to identify the most promising prospects for immediate follow-up.',
+        category: 'Sales',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 15,
+        tools: ['Lead Scoring AI', 'CRM Integration', 'Email Parser'],
+        steps: [
+          'Analyze lead data and behavior patterns',
+          'Score leads based on conversion probability',
+          'Prioritize follow-up sequence',
+          'Generate personalized outreach strategy'
+        ],
+        expectedOutcome: 'Increased lead conversion rate by 35% through intelligent prioritization',
+        agentType: 'leadScoringAgent'
+      },
+      {
+        id: 'generate-proposals',
+        title: 'Generate Custom Proposals',
+        description: 'Create tailored sales proposals based on client requirements and historical success patterns.',
+        category: 'Sales',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 30,
+        tools: ['Proposal Generator', 'Template Engine', 'Price Calculator'],
+        steps: [
+          'Analyze client requirements and budget',
+          'Select optimal pricing strategy',
+          'Generate customized proposal content',
+          'Add relevant case studies and testimonials'
+        ],
+        expectedOutcome: 'Faster proposal generation with 40% higher acceptance rate',
+        agentType: 'proposalGeneratorAgent'
+      },
+      {
+        id: 'follow-up-automation',
+        title: 'Automate Follow-up Sequences',
+        description: 'Set up intelligent follow-up campaigns that adapt based on prospect engagement and behavior.',
+        category: 'Sales',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 20,
+        tools: ['Email Automation', 'Behavior Tracking', 'Calendar Integration'],
+        expectedOutcome: 'Consistent follow-up with 50% increase in response rates',
+        agentType: 'followUpAgent'
+      },
+      {
+        id: 'pipeline-optimization',
+        title: 'Optimize Sales Pipeline',
+        description: 'Analyze pipeline bottlenecks and recommend actions to accelerate deal progression.',
+        category: 'Sales',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 25,
+        tools: ['Pipeline Analytics', 'Bottleneck Detection', 'Action Recommender'],
+        expectedOutcome: 'Reduce sales cycle by 25% through optimized pipeline management',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'competitive-analysis',
+        title: 'Competitive Intelligence',
+        description: 'Monitor competitors and provide strategic insights for winning deals.',
+        category: 'Sales',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['Competitor Monitor', 'Market Intelligence', 'Strategy Advisor'],
+        expectedOutcome: 'Improved win rate against competitors by 30%',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'price-optimization',
+        title: 'Dynamic Price Optimization',
+        description: 'Optimize pricing strategies based on market conditions and customer profiles.',
+        category: 'Sales',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 35,
+        tools: ['Pricing AI', 'Market Analysis', 'Customer Profiler'],
+        expectedOutcome: 'Increase deal value by 20% through optimal pricing',
+        agentType: 'proposalGeneratorAgent'
+      },
+      {
+        id: 'sales-forecasting',
+        title: 'AI Sales Forecasting',
+        description: 'Generate accurate sales forecasts using machine learning and pipeline data.',
+        category: 'Sales',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 30,
+        tools: ['Forecasting AI', 'Pipeline Data', 'Trend Analysis'],
+        expectedOutcome: 'Improve forecast accuracy by 60% for better planning',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'objection-handling',
+        title: 'Smart Objection Handling',
+        description: 'Provide real-time objection handling suggestions during sales calls.',
+        category: 'Sales',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 15,
+        tools: ['Objection AI', 'Call Assistant', 'Response Generator'],
+        expectedOutcome: 'Handle objections more effectively, increasing close rate by 25%',
+        agentType: 'objectionHandlerAgent'
+      }
+    ]
+  },
+  {
+    id: 'marketing',
+    name: 'Marketing',
+    description: 'Brand awareness and lead generation',
+    icon: 'Rocket',
+    color: 'from-purple-500 to-pink-500',
+    goals: [
+      {
+        id: 'content-calendar',
+        title: 'Create Content Calendar',
+        description: 'Generate a comprehensive content strategy with optimal posting times and engagement tactics.',
+        category: 'Marketing',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 45,
+        tools: ['Content AI', 'Social Media Manager', 'Analytics Engine'],
+        expectedOutcome: 'Consistent content delivery with 60% increase in engagement',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'campaign-optimization',
+        title: 'Optimize Ad Campaigns',
+        description: 'Analyze and optimize marketing campaigns for maximum ROI using AI-driven insights.',
+        category: 'Marketing',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 35,
+        tools: ['Campaign Analytics', 'A/B Testing', 'ROI Calculator'],
+        expectedOutcome: 'Improved campaign ROI by 45% through intelligent optimization',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'audience-segmentation',
+        title: 'AI Audience Segmentation',
+        description: 'Automatically segment audiences based on behavior and demographics for targeted campaigns.',
+        category: 'Marketing',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 30,
+        tools: ['Segmentation AI', 'Behavior Analytics', 'Demographics Engine'],
+        expectedOutcome: 'Increase campaign effectiveness by 50% through precise targeting',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'brand-monitoring',
+        title: 'Brand Sentiment Monitoring',
+        description: 'Monitor brand mentions and sentiment across all digital channels.',
+        category: 'Marketing',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 25,
+        tools: ['Sentiment AI', 'Social Listening', 'Brand Monitor'],
+        expectedOutcome: 'Proactive brand management with 80% faster response to issues',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'influencer-identification',
+        title: 'Influencer Partnership AI',
+        description: 'Identify and evaluate potential influencer partnerships for maximum brand impact.',
+        category: 'Marketing',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 40,
+        tools: ['Influencer AI', 'Impact Calculator', 'Partnership Analyzer'],
+        expectedOutcome: 'Find high-ROI influencers, reducing partnership costs by 30%',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'market-research',
+        title: 'Automated Market Research',
+        description: 'Conduct comprehensive market research using AI to identify trends and opportunities.',
+        category: 'Marketing',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 50,
+        tools: ['Research AI', 'Market Scanner', 'Trend Detector'],
+        expectedOutcome: 'Identify market opportunities 3x faster than traditional methods',
+        agentType: 'leadEnrichmentAgent'
+      },
+      {
+        id: 'email-marketing',
+        title: 'AI Email Marketing',
+        description: 'Create and optimize email marketing campaigns with AI-driven personalization.',
+        category: 'Marketing',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 25,
+        tools: ['Email AI', 'Personalization Engine', 'Campaign Optimizer'],
+        expectedOutcome: 'Increase email open rates by 40% and click-through by 35%',
+        agentType: 'personalizedEmailAgent'
+      }
+    ]
+  },
+  {
+    id: 'relationship',
+    name: 'Relationship',
+    description: 'Customer relationship management',
+    icon: 'Users',
+    color: 'from-green-500 to-teal-500',
+    goals: [
+      {
+        id: 'customer-health-score',
+        title: 'Monitor Customer Health',
+        description: 'Track customer satisfaction and identify at-risk accounts before they churn.',
+        category: 'Relationship',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 25,
+        tools: ['Health Score AI', 'Sentiment Analysis', 'Usage Analytics'],
+        expectedOutcome: 'Reduce churn by 30% through proactive intervention',
+        agentType: 'communicationAgent'
+      },
+      {
+        id: 'personalized-outreach',
+        title: 'Personalized Outreach',
+        description: 'Create highly personalized communication based on customer preferences and history.',
+        category: 'Relationship',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 20,
+        tools: ['Personalization Engine', 'Communication AI', 'Preference Tracker'],
+        expectedOutcome: 'Increase response rates by 55% with personalized messaging',
+        agentType: 'personalizedEmailAgent'
+      },
+      {
+        id: 'loyalty-programs',
+        title: 'AI Loyalty Programs',
+        description: 'Design and implement AI-powered loyalty programs that increase customer retention.',
+        category: 'Relationship',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 45,
+        tools: ['Loyalty AI', 'Reward Calculator', 'Behavior Predictor'],
+        expectedOutcome: 'Increase customer lifetime value by 25% through targeted loyalty',
+        agentType: 'communicationAgent'
+      },
+      {
+        id: 'upsell-identification',
+        title: 'Upsell Opportunity Detection',
+        description: 'Identify customers ready for upselling based on usage patterns and behavior.',
+        category: 'Relationship',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 20,
+        tools: ['Upsell AI', 'Usage Analytics', 'Opportunity Scorer'],
+        expectedOutcome: 'Increase upsell revenue by 40% through precise timing',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'customer-journey',
+        title: 'Customer Journey Optimization',
+        description: 'Map and optimize customer journeys for improved satisfaction and retention.',
+        category: 'Relationship',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['Journey Mapper', 'Touchpoint Analyzer', 'Experience Optimizer'],
+        expectedOutcome: 'Improve customer satisfaction scores by 35%',
+        agentType: 'communicationAgent'
+      },
+      {
+        id: 'feedback-analysis',
+        title: 'AI Feedback Analysis',
+        description: 'Automatically analyze customer feedback to identify improvement opportunities.',
+        category: 'Relationship',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 30,
+        tools: ['Feedback AI', 'Sentiment Analyzer', 'Insight Generator'],
+        expectedOutcome: 'Respond to customer concerns 70% faster with actionable insights',
+        agentType: 'communicationAgent'
+      }
+    ]
+  },
+  {
+    id: 'automation',
+    name: 'Automation',
+    description: 'Process automation and efficiency',
+    icon: 'Bot',
+    color: 'from-orange-500 to-amber-500',
+    goals: [
+      {
+        id: 'data-entry-automation',
+        title: 'Automate Data Entry',
+        description: 'Eliminate manual data entry by automatically capturing and organizing information from various sources.',
+        category: 'Automation',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 30,
+        tools: ['OCR Engine', 'Data Parser', 'CRM Integration'],
+        expectedOutcome: 'Save 15 hours per week on manual data entry tasks',
+        agentType: 'crmFunctions'
+      },
+      {
+        id: 'workflow-optimization',
+        title: 'Optimize Workflows',
+        description: 'Analyze current processes and suggest automation opportunities for maximum efficiency.',
+        category: 'Automation',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['Process Mining', 'Workflow AI', 'Efficiency Analytics'],
+        expectedOutcome: 'Increase team productivity by 40% through optimized workflows',
+        agentType: 'AgentOrchestrator'
+      },
+      {
+        id: 'document-automation',
+        title: 'Document Generation',
+        description: 'Automatically generate contracts, reports, and documentation from templates.',
+        category: 'Automation',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 25,
+        tools: ['Document AI', 'Template Engine', 'Data Merger'],
+        expectedOutcome: 'Reduce document creation time by 80% with automated generation',
+        agentType: 'proposalGeneratorAgent'
+      },
+      {
+        id: 'task-prioritization',
+        title: 'AI Task Prioritization',
+        description: 'Automatically prioritize tasks based on urgency, impact, and available resources.',
+        category: 'Automation',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 15,
+        tools: ['Priority AI', 'Task Analyzer', 'Resource Planner'],
+        expectedOutcome: 'Improve task completion rates by 35% through smart prioritization',
+        agentType: 'AgentOrchestrator'
+      },
+      {
+        id: 'meeting-automation',
+        title: 'Meeting Automation',
+        description: 'Automate meeting scheduling, agenda creation, and follow-up actions.',
+        category: 'Automation',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 20,
+        tools: ['Calendar AI', 'Agenda Generator', 'Action Tracker'],
+        expectedOutcome: 'Save 5 hours per week on meeting coordination tasks',
+        agentType: 'meetingsAgent'
+      },
+      {
+        id: 'invoice-automation',
+        title: 'Automated Invoicing',
+        description: 'Generate and send invoices automatically based on project milestones and contracts.',
+        category: 'Automation',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 25,
+        tools: ['Invoice AI', 'Payment Tracker', 'Contract Monitor'],
+        expectedOutcome: 'Reduce payment delays by 50% through automated invoicing',
+        agentType: 'crmFunctions'
+      }
+    ]
+  },
+  {
+    id: 'analytics',
+    name: 'Analytics',
+    description: 'Data insights and reporting',
+    icon: 'BarChart3',
+    color: 'from-teal-500 to-cyan-500',
+    goals: [
+      {
+        id: 'revenue-forecasting',
+        title: 'Revenue Forecasting',
+        description: 'Generate accurate revenue predictions based on pipeline data and historical trends.',
+        category: 'Analytics',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 25,
+        tools: ['Forecasting AI', 'Pipeline Analytics', 'Trend Analysis'],
+        expectedOutcome: 'Improve forecast accuracy by 60% for better planning',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'performance-dashboard',
+        title: 'Performance Dashboard',
+        description: 'Create comprehensive dashboards that provide real-time insights into business performance.',
+        category: 'Analytics',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 35,
+        tools: ['Dashboard Builder', 'KPI Tracker', 'Visualization Engine'],
+        expectedOutcome: 'Real-time visibility into key metrics and performance indicators',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'cohort-analysis',
+        title: 'Customer Cohort Analysis',
+        description: 'Analyze customer cohorts to understand retention patterns and lifetime value.',
+        category: 'Analytics',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['Cohort AI', 'Retention Analytics', 'LTV Calculator'],
+        expectedOutcome: 'Identify high-value customer segments for targeted strategies',
+        agentType: 'leadScoringAgent'
+      },
+      {
+        id: 'churn-prediction',
+        title: 'Churn Prediction Model',
+        description: 'Predict which customers are likely to churn and recommend retention strategies.',
+        category: 'Analytics',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 45,
+        tools: ['Churn AI', 'Risk Scorer', 'Retention Recommender'],
+        expectedOutcome: 'Reduce churn by 40% through predictive intervention',
+        agentType: 'leadScoringAgent'
+      },
+      {
+        id: 'roi-analysis',
+        title: 'ROI Analysis Automation',
+        description: 'Automatically calculate ROI for marketing campaigns and business initiatives.',
+        category: 'Analytics',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 30,
+        tools: ['ROI Calculator', 'Cost Tracker', 'Performance Analyzer'],
+        expectedOutcome: 'Make data-driven decisions with accurate ROI calculations',
+        agentType: 'aiSdrAgent'
+      },
+      {
+        id: 'competitive-benchmarking',
+        title: 'Competitive Benchmarking',
+        description: 'Benchmark performance against competitors using AI-powered market analysis.',
+        category: 'Analytics',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 50,
+        tools: ['Benchmark AI', 'Market Scanner', 'Performance Comparator'],
+        expectedOutcome: 'Identify competitive advantages and improvement opportunities',
+        agentType: 'leadEnrichmentAgent'
+      }
+    ]
+  },
+  {
+    id: 'content',
+    name: 'Content',
+    description: 'Content creation and management',
+    icon: 'Globe',
+    color: 'from-yellow-500 to-orange-500',
+    goals: [
+      {
+        id: 'blog-content-generation',
+        title: 'Generate Blog Content',
+        description: 'Create engaging blog posts optimized for SEO and audience engagement.',
+        category: 'Content',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 45,
+        tools: ['Content AI', 'SEO Optimizer', 'Engagement Tracker'],
+        expectedOutcome: 'Consistent, high-quality content that drives 70% more traffic',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'social-media-content',
+        title: 'Social Media Content',
+        description: 'Create platform-specific content that maximizes engagement and reach.',
+        category: 'Content',
+        priority: 'High',
+        complexity: 'Simple',
+        estimatedTime: 20,
+        tools: ['Social AI', 'Image Generator', 'Hashtag Optimizer'],
+        expectedOutcome: 'Increase social media engagement by 80% with optimized content',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'video-content',
+        title: 'AI Video Content Creation',
+        description: 'Generate video scripts, storyboards, and optimize video content for maximum impact.',
+        category: 'Content',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 60,
+        tools: ['Video AI', 'Script Generator', 'Storyboard Creator'],
+        expectedOutcome: 'Create compelling video content 5x faster than traditional methods',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'content-optimization',
+        title: 'Content Performance Optimization',
+        description: 'Optimize existing content for better performance based on analytics and user behavior.',
+        category: 'Content',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 30,
+        tools: ['Content Optimizer', 'Performance Analytics', 'A/B Tester'],
+        expectedOutcome: 'Improve content performance by 50% through AI optimization',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'content-calendar-ai',
+        title: 'AI Content Calendar',
+        description: 'Generate optimal content calendars based on audience behavior and trending topics.',
+        category: 'Content',
+        priority: 'High',
+        complexity: 'Intermediate',
+        estimatedTime: 35,
+        tools: ['Calendar AI', 'Trend Monitor', 'Audience Analyzer'],
+        expectedOutcome: 'Maintain consistent content flow with 60% better engagement timing',
+        agentType: 'socialMediaAgent'
+      },
+      {
+        id: 'seo-optimization',
+        title: 'SEO Content Optimization',
+        description: 'Automatically optimize content for search engines while maintaining readability.',
+        category: 'Content',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['SEO AI', 'Keyword Optimizer', 'Readability Checker'],
+        expectedOutcome: 'Increase organic search traffic by 120% through optimized content',
+        agentType: 'socialMediaAgent'
+      }
+    ]
+  },
+  {
+    id: 'admin',
+    name: 'Admin',
+    description: 'Administrative and operational tasks',
+    icon: 'Settings',
+    color: 'from-indigo-500 to-purple-500',
+    goals: [
+      {
+        id: 'report-generation',
+        title: 'Automated Reports',
+        description: 'Generate comprehensive business reports automatically on scheduled intervals.',
+        category: 'Admin',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 30,
+        tools: ['Report Builder', 'Data Aggregator', 'Schedule Manager'],
+        expectedOutcome: 'Save 10 hours per week on manual report creation',
+        agentType: 'crmFunctions'
+      },
+      {
+        id: 'compliance-monitoring',
+        title: 'Compliance Monitoring',
+        description: 'Monitor business processes for compliance with industry regulations and standards.',
+        category: 'Admin',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['Compliance AI', 'Audit Trail', 'Risk Assessment'],
+        expectedOutcome: 'Ensure 100% compliance with automated monitoring and alerts',
+        agentType: 'crmFunctions'
+      },
+      {
+        id: 'expense-tracking',
+        title: 'AI Expense Tracking',
+        description: 'Automatically categorize and track expenses from receipts and financial data.',
+        category: 'Admin',
+        priority: 'Medium',
+        complexity: 'Intermediate',
+        estimatedTime: 25,
+        tools: ['Expense AI', 'Receipt Scanner', 'Category Classifier'],
+        expectedOutcome: 'Reduce expense processing time by 90% with automated tracking',
+        agentType: 'crmFunctions'
+      },
+      {
+        id: 'contract-management',
+        title: 'Contract Lifecycle Management',
+        description: 'Automate contract creation, review, and renewal processes with AI assistance.',
+        category: 'Admin',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 50,
+        tools: ['Contract AI', 'Legal Review', 'Renewal Tracker'],
+        expectedOutcome: 'Streamline contract processes, reducing legal review time by 60%',
+        agentType: 'proposalGeneratorAgent'
+      },
+      {
+        id: 'inventory-management',
+        title: 'AI Inventory Management',
+        description: 'Optimize inventory levels and predict demand using machine learning algorithms.',
+        category: 'Admin',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 45,
+        tools: ['Inventory AI', 'Demand Predictor', 'Stock Optimizer'],
+        expectedOutcome: 'Reduce inventory costs by 25% while maintaining optimal stock levels',
+        agentType: 'crmFunctions'
+      },
+      {
+        id: 'hr-automation',
+        title: 'HR Process Automation',
+        description: 'Automate HR processes including recruitment, onboarding, and performance reviews.',
+        category: 'Admin',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 55,
+        tools: ['HR AI', 'Recruitment Bot', 'Performance Tracker'],
+        expectedOutcome: 'Reduce HR administrative time by 70% through intelligent automation',
+        agentType: 'crmFunctions'
+      }
+    ]
+  },
+  {
+    id: 'ai-native',
+    name: 'AI-Native',
+    description: 'Advanced AI-powered solutions',
+    icon: 'Brain',
+    color: 'from-pink-500 to-rose-500',
+    goals: [
+      {
+        id: 'predictive-analytics',
+        title: 'Predictive Analytics',
+        description: 'Use machine learning to predict customer behavior and market trends.',
+        category: 'AI-Native',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 50,
+        tools: ['ML Models', 'Predictive Engine', 'Trend Analyzer'],
+        expectedOutcome: 'Anticipate market changes with 85% accuracy for strategic advantage',
+        agentType: 'aiAeAgent'
+      },
+      {
+        id: 'intelligent-recommendations',
+        title: 'Intelligent Recommendations',
+        description: 'Provide AI-powered recommendations for sales strategies and customer interactions.',
+        category: 'AI-Native',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 35,
+        tools: ['Recommendation AI', 'Strategy Engine', 'Context Analyzer'],
+        expectedOutcome: 'Improve decision-making with AI-driven insights and recommendations',
+        agentType: 'aiAeAgent'
+      },
+      {
+        id: 'anomaly-detection',
+        title: 'Business Anomaly Detection',
+        description: 'Detect unusual patterns in business data that could indicate opportunities or risks.',
+        category: 'AI-Native',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 45,
+        tools: ['Anomaly AI', 'Pattern Recognition', 'Alert System'],
+        expectedOutcome: 'Identify critical business issues 80% faster than manual analysis',
+        agentType: 'aiAeAgent'
+      },
+      {
+        id: 'natural-language-queries',
+        title: 'Natural Language Business Queries',
+        description: 'Query business data using natural language and get instant AI-powered insights.',
+        category: 'AI-Native',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 40,
+        tools: ['NLP Engine', 'Query Processor', 'Insight Generator'],
+        expectedOutcome: 'Make data accessible to non-technical users, increasing data usage by 200%',
+        agentType: 'aiAeAgent'
+      },
+      {
+        id: 'ai-assistant',
+        title: 'Intelligent Business Assistant',
+        description: 'Deploy an AI assistant that can handle complex business tasks and decision-making.',
+        category: 'AI-Native',
+        priority: 'High',
+        complexity: 'Advanced',
+        estimatedTime: 60,
+        tools: ['AI Assistant', 'Task Processor', 'Decision Engine'],
+        expectedOutcome: 'Automate 60% of routine business decisions with AI assistance',
+        agentType: 'AgentOrchestrator'
+      },
+      {
+        id: 'sentiment-intelligence',
+        title: 'Advanced Sentiment Intelligence',
+        description: 'Analyze sentiment across all customer touchpoints for comprehensive emotional insights.',
+        category: 'AI-Native',
+        priority: 'Medium',
+        complexity: 'Advanced',
+        estimatedTime: 35,
+        tools: ['Sentiment AI', 'Emotion Detector', 'Insight Aggregator'],
+        expectedOutcome: 'Understand customer emotions with 95% accuracy for better relationships',
+        agentType: 'communicationAgent'
+      }
+    ]
+  }
+];
+// Calculate total goals across all categories
+export const getTotalGoalsCount = (): number => {
+  return aiGoalsData.reduce((total, category) => total + category.goals.length, 0);
+};
+// Get goals by category
+export const getGoalsByCategory = (categoryId: string): Goal[] => {
+  const category = aiGoalsData.find(cat => cat.id === categoryId);
+  return category ? category.goals : [];
+};
+// Get all goals as a flat array
+export const getAllGoals = (): Goal[] => {
+  return aiGoalsData.flatMap(category => category.goals);
+};
+// Search goals by title or description
+export const searchGoals = (searchTerm: string): Goal[] => {
+  const allGoals = getAllGoals();
+  return allGoals.filter(goal => 
+    goal.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    goal.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    goal.expectedOutcome?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+};
+Goals Breakdown by Category:
+Sales (8 goals): Lead qualification, proposals, follow-up, pipeline optimization
+Marketing (7 goals): Content calendar, campaigns, audience segmentation, brand monitoring
+Relationship (6 goals): Customer health, personalization, loyalty, upselling
+Automation (6 goals): Data entry, workflows, documents, task prioritization
+Analytics (6 goals): Revenue forecasting, dashboards, cohort analysis, churn prediction
+Content (6 goals): Blog content, social media, video creation, SEO optimization
+Admin (6 goals): Reports, compliance, expenses, contracts, inventory, HR
+AI-Native (6 goals): Predictive analytics, recommendations, anomaly detection, AI assistant
+Total: 51 goals across 8 business categories, each with detailed execution steps, required tools, expected outcomes, and assigned AI agents.
+
+Each goal includes:
+
+Complete metadata (priority, complexity, estimated time)
+Tool requirements (specific AI tools needed)
+Execution steps (detailed process breakdown)
+Expected outcomes (measurable business results)
+Agent assignment (which AI agent handles execution)
+This creates a comprehensive business automation library covering every aspect of modern business operations.

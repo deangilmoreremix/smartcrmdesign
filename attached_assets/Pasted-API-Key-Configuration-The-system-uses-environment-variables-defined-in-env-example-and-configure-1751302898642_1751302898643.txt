@@ -1,0 +1,24 @@
+API Key Configuration:
+
+The system uses environment variables (defined in .env.example and configured in your .env file) to store API keys for different services. These include VITE_OPENAI_API_KEY, VITE_GEMINI_API_KEY, VITE_ELEVENLABS_API_KEY, VITE_COMPOSIO_API_KEY, and VITE_SUPABASE_URL/VITE_SUPABASE_ANON_KEY.
+The src/config/apiConfig.ts file reads these environment variables and validates whether the necessary API keys are configured, determining if the system can operate in "Live Mode" (real API calls) or "Demo Mode" (simulated responses).
+Core API Services (src/services/realApiService.ts):
+
+This file acts as the central hub for making actual API calls to the configured services.
+OpenAI: Used for core AI agent intelligence, natural language processing, and generating text responses.
+Gemini: An alternative Large Language Model (LLM) provider from Google, offering similar capabilities to OpenAI. The system can use either OpenAI or Gemini for its AI processing.
+ElevenLabs: Utilized for AI voice generation and text-to-speech features, allowing agents to provide natural-sounding voice responses.
+Composio: This is a crucial integration platform that enables the system to connect with over 250 business tools (e.g., Gmail, Google Calendar, Slack, HubSpot, Salesforce, Stripe, Trello, Shopify). Instead of integrating with each tool individually, the system makes calls to the Composio API, which then orchestrates the actions with the respective third-party tools.
+Composio Tool Integration (src/data/composioToolsData.ts, src/agents/useOpenAIAgentSuite.tsx):
+
+The src/data/composioToolsData.ts file lists all the external tools that can be integrated via Composio, along with their categories and descriptions.
+src/agents/useOpenAIAgentSuite.tsx contains logic to interact with Composio, including functions to authenticate with various applications (e.g., Gmail, Slack) and execute actions through them. This allows AI agents to send emails, create calendar events, or update CRM records in integrated tools.
+Supabase Integration (src/services/supabaseClient.ts):
+
+Supabase is used as the backend for CRM data storage and user management.
+The src/services/supabaseClient.ts file provides functions to interact with the Supabase PostgreSQL database, allowing AI agents to create, read, update, and delete contact, deal, and customer records, as well as log activities.
+Agent Execution (src/agents/realAgentExecutor.ts, src/agents/composioAgentRunner.ts):
+
+When a user initiates a goal in "Live Mode", the src/agents/realAgentExecutor.ts and src/agents/composioAgentRunner.ts files orchestrate the execution.
+They determine which LLM provider (OpenAI or Gemini) to use based on configuration and then call the appropriate services in realApiService.ts to perform the required actions, leveraging Composio for tool interactions and Supabase for CRM data management.
+In essence, the system acts as an intelligent layer that translates user commands and business goals into specific actions executed through these integrated APIs, allowing AI agents to automate various sales and CRM tasks.

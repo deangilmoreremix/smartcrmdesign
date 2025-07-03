@@ -1,0 +1,204 @@
+import { Composio } from 'composio-core';
+
+class ComposioService {
+  private composio: Composio | null = null;
+
+  constructor() {
+    // Initialize Composio client if API key is available
+    if (process.env.COMPOSIO_API_KEY) {
+      this.composio = new Composio({
+        apiKey: process.env.COMPOSIO_API_KEY
+      });
+    }
+  }
+
+  // Check if Composio is properly configured
+  isConfigured(): boolean {
+    return this.composio !== null;
+  }
+
+  // LinkedIn Integration
+  async sendLinkedInMessage(recipientId: string, message: string): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const result = await this.composio.getEntity('default').execute({
+        appName: 'linkedin',
+        actionName: 'LINKEDIN_SEND_MESSAGE',
+        params: {
+          recipient_id: recipientId,
+          message: message
+        }
+      });
+
+      return {
+        success: true,
+        data: result,
+        message: 'LinkedIn message sent successfully'
+      };
+    } catch (error) {
+      console.error('Composio LinkedIn message failed:', error);
+      throw new Error(`Failed to send LinkedIn message: ${error.message}`);
+    }
+  }
+
+  // WhatsApp Integration
+  async sendWhatsAppMessage(phoneNumber: string, message: string, templateName?: string): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const result = await this.composio.getEntity('default').execute({
+        appName: 'whatsapp_business',
+        actionName: 'WHATSAPP_SEND_MESSAGE',
+        params: {
+          phone_number: phoneNumber,
+          message: message,
+          template_name: templateName
+        }
+      });
+
+      return {
+        success: true,
+        data: result,
+        message: 'WhatsApp message sent successfully'
+      };
+    } catch (error) {
+      console.error('Composio WhatsApp message failed:', error);
+      throw new Error(`Failed to send WhatsApp message: ${error.message}`);
+    }
+  }
+
+  // Email Integration
+  async sendEmail(to: string, subject: string, content: string, templateId?: string): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const result = await this.composio.getEntity('default').execute({
+        appName: 'gmail',
+        actionName: 'GMAIL_SEND_EMAIL',
+        params: {
+          to: to,
+          subject: subject,
+          body: content,
+          template_id: templateId
+        }
+      });
+
+      return {
+        success: true,
+        data: result,
+        message: 'Email sent successfully'
+      };
+    } catch (error) {
+      console.error('Composio email send failed:', error);
+      throw new Error(`Failed to send email: ${error.message}`);
+    }
+  }
+
+  // Calendar Integration
+  async createCalendarEvent(title: string, description: string, startTime: string, endTime: string, attendees?: string[], meetingLink?: string): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const result = await this.composio.getEntity('default').execute({
+        appName: 'google_calendar',
+        actionName: 'GOOGLECALENDAR_CREATE_EVENT',
+        params: {
+          summary: title,
+          description: description,
+          start: { dateTime: startTime },
+          end: { dateTime: endTime },
+          attendees: attendees?.map(email => ({ email })) || [],
+          conferenceData: meetingLink ? { 
+            createRequest: { requestId: Date.now().toString() }
+          } : undefined
+        }
+      });
+
+      return {
+        success: true,
+        data: result,
+        message: 'Calendar event created successfully'
+      };
+    } catch (error) {
+      console.error('Composio calendar event creation failed:', error);
+      throw new Error(`Failed to create calendar event: ${error.message}`);
+    }
+  }
+
+  // Social Media Integration - X (Twitter)
+  async postToX(content: string, scheduledTime?: string): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const result = await this.composio.getEntity('default').execute({
+        appName: 'x',
+        actionName: 'X_POST_TWEET',
+        params: {
+          text: content,
+          scheduled_time: scheduledTime
+        }
+      });
+
+      return {
+        success: true,
+        data: result,
+        message: 'X post published successfully'
+      };
+    } catch (error) {
+      console.error('Composio X post failed:', error);
+      throw new Error(`Failed to post to X: ${error.message}`);
+    }
+  }
+
+  // Get available tools/apps
+  async getAvailableApps(): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const apps = await this.composio.apps.list();
+      return {
+        success: true,
+        data: apps,
+        message: 'Available apps retrieved successfully'
+      };
+    } catch (error) {
+      console.error('Failed to get available apps:', error);
+      throw new Error(`Failed to retrieve available apps: ${error.message}`);
+    }
+  }
+
+  // Get entity connections
+  async getConnections(): Promise<any> {
+    if (!this.composio) {
+      throw new Error('Composio client not initialized. Please set COMPOSIO_API_KEY environment variable.');
+    }
+
+    try {
+      const connections = await this.composio.getEntity('default').getConnections();
+      return {
+        success: true,
+        data: connections,
+        message: 'Connections retrieved successfully'
+      };
+    } catch (error) {
+      console.error('Failed to get connections:', error);
+      throw new Error(`Failed to retrieve connections: ${error.message}`);
+    }
+  }
+}
+
+// Export singleton instance
+export const composioService = new ComposioService();

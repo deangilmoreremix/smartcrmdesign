@@ -1,0 +1,349 @@
+import { useState, useEffect } from 'react';
+
+// Composio Feature Types
+export interface ComposioFeature {
+  id: string;
+  name: string;
+  description: string;
+  category: 'social' | 'communication' | 'automation' | 'analytics';
+  icon: string;
+  enabled: boolean;
+  settings?: Record<string, any>;
+}
+
+// Composio Client for API interactions
+export class ComposioClient {
+  private baseUrl = '/api/composio';
+
+  // LinkedIn Integration
+  async sendLinkedInMessage(recipientId: string, message: string): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/linkedin/message`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        recipient_id: recipientId,
+        message
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`LinkedIn message failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  async searchLinkedInProfiles(query: string, filters?: any): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/linkedin/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        filters: filters || {}
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`LinkedIn search failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  // X (Twitter) Integration
+  async postToX(content: string, scheduledTime?: Date): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/x/post`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content,
+        scheduled_time: scheduledTime?.toISOString()
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`X post failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  // Reddit Integration
+  async scheduleRedditPost(subreddit: string, title: string, content: string, scheduledTime?: Date): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/reddit/post`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        subreddit,
+        title,
+        content,
+        scheduled_time: scheduledTime?.toISOString()
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Reddit post failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  // Email Integration
+  async sendAutomatedEmail(to: string, subject: string, content: string, templateId?: string): Promise<any> {
+    const response = await fetch(`${this.baseUrl}/email/send`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to,
+        subject,
+        content,
+        template_id: templateId
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Email send failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  // Get available features
+  async getFeatures(): Promise<ComposioFeature[]> {
+    try {
+      const response = await fetch(`${this.baseUrl}/features`);
+      if (!response.ok) {
+        // Return default features if API not available
+        return this.getDefaultFeatures();
+      }
+      return await response.json();
+    } catch (error) {
+      console.warn('Failed to fetch Composio features, using defaults:', error);
+      return this.getDefaultFeatures();
+    }
+  }
+
+  // Toggle feature enabled/disabled
+  async toggleFeature(featureId: string): Promise<void> {
+    try {
+      const response = await fetch(`${this.baseUrl}/features/${featureId}/toggle`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to toggle feature: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error('Error toggling Composio feature:', error);
+      throw error;
+    }
+  }
+
+  // Get default features configuration
+  private getDefaultFeatures(): ComposioFeature[] {
+    return [
+      {
+        id: 'linkedin-outreach',
+        name: 'LinkedIn Outreach',
+        description: 'Send personalized LinkedIn messages and connection requests',
+        category: 'social',
+        icon: '💼',
+        enabled: false
+      },
+      {
+        id: 'linkedin-prospecting',
+        name: 'LinkedIn Prospecting',
+        description: 'Search and discover potential leads on LinkedIn',
+        category: 'social',
+        icon: '🔍',
+        enabled: false
+      },
+      {
+        id: 'twitter-posting',
+        name: 'X (Twitter) Posting',
+        description: 'Schedule and post content to X (Twitter)',
+        category: 'social',
+        icon: '🐦',
+        enabled: false
+      },
+      {
+        id: 'reddit-engagement',
+        name: 'Reddit Engagement',
+        description: 'Post and engage in relevant subreddit communities',
+        category: 'social',
+        icon: '🗣️',
+        enabled: false
+      },
+      {
+        id: 'email-automation',
+        name: 'Email Automation',
+        description: 'Send automated follow-up emails and sequences',
+        category: 'communication',
+        icon: '📧',
+        enabled: false
+      },
+      {
+        id: 'whatsapp-messaging',
+        name: 'WhatsApp Business',
+        description: 'Send WhatsApp messages to leads and customers',
+        category: 'communication',
+        icon: '💬',
+        enabled: false
+      },
+      {
+        id: 'sms-campaigns',
+        name: 'SMS Campaigns',
+        description: 'Send SMS messages and campaigns via Twilio',
+        category: 'communication',
+        icon: '📱',
+        enabled: false
+      },
+      {
+        id: 'calendar-scheduling',
+        name: 'Calendar Integration',
+        description: 'Schedule meetings and manage calendar events',
+        category: 'automation',
+        icon: '📅',
+        enabled: false
+      },
+      {
+        id: 'lead-enrichment',
+        name: 'Lead Enrichment',
+        description: 'Automatically enrich lead data from multiple sources',
+        category: 'automation',
+        icon: '✨',
+        enabled: false
+      },
+      {
+        id: 'workflow-triggers',
+        name: 'Workflow Triggers',
+        description: 'Trigger automated workflows based on CRM events',
+        category: 'automation',
+        icon: '⚡',
+        enabled: false
+      },
+      {
+        id: 'engagement-analytics',
+        name: 'Engagement Analytics',
+        description: 'Track engagement across all communication channels',
+        category: 'analytics',
+        icon: '📊',
+        enabled: false
+      },
+      {
+        id: 'sentiment-analysis',
+        name: 'Sentiment Analysis',
+        description: 'Analyze sentiment in customer communications',
+        category: 'analytics',
+        icon: '💭',
+        enabled: false
+      }
+    ];
+  }
+}
+
+// Export singleton instance
+export const composioClient = new ComposioClient();
+
+// Hook for managing Composio features
+export function useComposioService() {
+  const [features, setFeatures] = useState<ComposioFeature[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadFeatures();
+  }, []);
+
+  const loadFeatures = async () => {
+    try {
+      setLoading(true);
+      const fetchedFeatures = await composioClient.getFeatures();
+      setFeatures(fetchedFeatures);
+    } catch (error) {
+      console.error('Error loading Composio features:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleFeature = async (featureId: string) => {
+    try {
+      await composioClient.toggleFeature(featureId);
+      setFeatures(prev => 
+        prev.map(feature => 
+          feature.id === featureId 
+            ? { ...feature, enabled: !feature.enabled }
+            : feature
+        )
+      );
+    } catch (error) {
+      console.error('Error toggling feature:', error);
+      throw error;
+    }
+  };
+
+  return {
+    features,
+    loading,
+    toggleFeature,
+    reloadFeatures: loadFeatures
+  };
+}
+
+// Legacy support for existing Settings component
+export const composioApps = [
+  "gmail", "slack", "google_calendar", "zoom", "trello", "google_sheets",
+  "shopify", "stripe", "calendly", "whatsapp_business", "twilio",
+  "facebook_ads", "typeform", "linkedin", "twitter", "reddit"
+];
+
+export async function composioAuth(app: string): Promise<void> {
+  try {
+    const response = await fetch(`/api/composio/auth/${app}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to authenticate with ${app}: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    
+    if (result.authUrl) {
+      // Open OAuth flow in new window
+      window.open(result.authUrl, '_blank', 'width=600,height=700');
+    }
+  } catch (error) {
+    console.error(`Composio auth failed for ${app}:`, error);
+    throw error;
+  }
+}
+
+export async function sendEmailViaComposio(emailData: { subject: string; body: string; to?: string }): Promise<void> {
+  try {
+    await composioClient.sendAutomatedEmail(
+      emailData.to || 'user@example.com',
+      emailData.subject,
+      emailData.body
+    );
+  } catch (error) {
+    console.error('Failed to send email via Composio:', error);
+    throw error;
+  }
+}

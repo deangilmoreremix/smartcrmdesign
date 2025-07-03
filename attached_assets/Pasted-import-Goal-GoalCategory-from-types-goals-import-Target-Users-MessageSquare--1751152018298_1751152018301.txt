@@ -1,0 +1,1009 @@
+import { Goal, GoalCategory } from '../types/goals';
+import { 
+  Target, 
+  Users, 
+  MessageSquare, 
+  Zap, 
+  BarChart3, 
+  FileText, 
+  Shield, 
+  Brain 
+} from 'lucide-react';
+
+export const goalCategories: GoalCategory[] = [
+  {
+    id: 'sales',
+    name: 'Sales Goals',
+    description: 'Automate your entire sales process from lead generation to closing',
+    icon: Target,
+    color: 'blue',
+    totalGoals: 14
+  },
+  {
+    id: 'marketing',
+    name: 'Marketing Goals', 
+    description: 'Launch campaigns and nurture leads across multiple channels',
+    icon: MessageSquare,
+    color: 'purple',
+    totalGoals: 8
+  },
+  {
+    id: 'relationship',
+    name: 'Relationship Goals',
+    description: 'Build stronger relationships with intelligent conversation memory',
+    icon: Users,
+    color: 'green',
+    totalGoals: 8
+  },
+  {
+    id: 'automation',
+    name: 'Automation Goals',
+    description: 'Create workflows that run your business while you sleep',
+    icon: Zap,
+    color: 'orange',
+    totalGoals: 8
+  },
+  {
+    id: 'analytics',
+    name: 'Analytics Goals',
+    description: 'Get insights and forecasts from your sales data',
+    icon: BarChart3,
+    color: 'teal',
+    totalGoals: 6
+  },
+  {
+    id: 'content',
+    name: 'Content Goals',
+    description: 'Generate professional content that converts prospects',
+    icon: FileText,
+    color: 'yellow',
+    totalGoals: 6
+  },
+  {
+    id: 'admin',
+    name: 'Admin Goals',
+    description: 'Keep your data clean and organized automatically',
+    icon: Shield,
+    color: 'indigo',
+    totalGoals: 4
+  },
+  {
+    id: 'ai-native',
+    name: 'AI-Native Goals',
+    description: 'Experience the future of AI-powered business automation',
+    icon: Brain,
+    color: 'pink',
+    totalGoals: 4
+  }
+];
+
+// Complete dataset of 58 AI Goals for CRM automation
+export const allGoals: Goal[] = [
+  // SALES GOALS (14 goals)
+  {
+    id: 'generate-leads-automatically',
+    category: 'Sales',
+    title: 'Generate leads automatically',
+    description: 'Discover qualified prospects based on target profiles using AI',
+    priority: 'High',
+    agentsRequired: ['Lead Enrichment Agent', 'AI SDR Agent', 'Lead Scoring Agent'],
+    toolsNeeded: ['linkedin', 'hubspot', 'google_sheets'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Fill your pipeline with 50+ qualified leads per week',
+    complexity: 'Intermediate',
+    realWorldExample: 'AI finds 50 SaaS prospects matching your ICP and adds them to your CRM with contact info',
+    successMetrics: ['50+ leads per week', '90%+ data accuracy', '30% qualification rate'],
+    roi: '300% ROI within 30 days'
+  },
+  {
+    id: 'cold-outreach-no-writing',
+    category: 'Sales',
+    title: 'Cold outreach without writing emails',
+    description: 'Auto-generate and send personalized intro messages that get responses',
+    priority: 'High',
+    agentsRequired: ['AI SDR Agent', 'Personalized Email Agent', 'Follow-up Agent'],
+    toolsNeeded: ['gmail', 'hubspot', 'linkedin'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Send 100+ personalized emails daily with 25%+ response rates',
+    complexity: 'Intermediate',
+    realWorldExample: 'AI writes and sends personalized cold emails to 100 prospects daily',
+    successMetrics: ['100+ emails daily', '25% response rate', '90% deliverability'],
+    roi: '10x cost savings vs hiring SDRs'
+  },
+  {
+    id: 'automate-sales-cycle',
+    category: 'Sales',
+    title: 'Automate your entire sales cycle',
+    description: 'From prospect identification to closed deals, fully automated',
+    priority: 'High',
+    agentsRequired: ['Lead Generator Agent', 'Sales Qualifier Agent', 'Deal Closer Agent'],
+    toolsNeeded: ['hubspot', 'pipedrive', 'calendly'],
+    estimatedSetupTime: '45 minutes',
+    businessImpact: 'Close deals while you sleep - 24/7 sales operation',
+    complexity: 'Advanced',
+    realWorldExample: 'Complete B2B sales cycle: prospect → qualify → demo → proposal → close',
+    successMetrics: ['24/7 operation', '40% faster sales cycle', '80% lead qualification accuracy'],
+    roi: '5x revenue increase'
+  },
+  {
+    id: 'nurture-cold-leads',
+    category: 'Sales',
+    title: 'Nurture cold leads into hot prospects',
+    description: 'Multi-touch campaigns that warm up leads over time',
+    priority: 'Medium',
+    agentsRequired: ['Lead Nurturing Agent', 'Content Personalizer Agent', 'Engagement Tracker Agent'],
+    toolsNeeded: ['mailchimp', 'hubspot', 'linkedin'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Convert 30% more cold leads into sales meetings',
+    complexity: 'Intermediate',
+    realWorldExample: '90-day nurture sequence with case studies, social proof, and demos',
+    successMetrics: ['30% conversion improvement', '80% engagement rate', '50% meeting booking rate'],
+    roi: '400% increase in lead conversion'
+  },
+  {
+    id: 'qualify-leads-automatically',
+    category: 'Sales',
+    title: 'Qualify leads automatically',
+    description: 'Score and categorize prospects based on buying signals',
+    priority: 'High',
+    agentsRequired: ['Lead Scoring Agent', 'BANT Qualifier Agent', 'Intent Analyzer Agent'],
+    toolsNeeded: ['hubspot', 'clearbit', 'zoominfo'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Focus only on leads ready to buy - 3x close rate',
+    complexity: 'Simple',
+    realWorldExample: 'Automatically score 1000+ leads and identify top 50 ready-to-buy prospects',
+    successMetrics: ['90% scoring accuracy', '3x higher close rate', '70% time savings'],
+    roi: '600% improvement in sales efficiency'
+  },
+  {
+    id: 'schedule-meetings-automatically',
+    category: 'Sales',
+    title: 'Schedule meetings automatically',
+    description: 'Handle back-and-forth scheduling via intelligent calendar management',
+    priority: 'Medium',
+    agentsRequired: ['Calendar Agent', 'Meeting Coordinator Agent', 'Reminder Agent'],
+    toolsNeeded: ['calendly', 'gmail', 'zoom'],
+    estimatedSetupTime: '10 minutes',
+    businessImpact: 'Book 5x more meetings with zero manual scheduling',
+    complexity: 'Simple',
+    realWorldExample: 'AI handles timezone conflicts, reschedules, and sends meeting prep materials',
+    successMetrics: ['5x more bookings', '95% attendance rate', '80% time savings'],
+    roi: '800% increase in meeting volume'
+  },
+  {
+    id: 'follow-up-persistently',
+    category: 'Sales',
+    title: 'Follow up persistently but politely',
+    description: 'Never let a lead go cold with intelligent follow-up sequences',
+    priority: 'High',
+    agentsRequired: ['Follow-up Agent', 'Persistence Manager Agent', 'Response Tracker Agent'],
+    toolsNeeded: ['gmail', 'hubspot', 'slack'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Recover 40% of lost deals through systematic follow-up',
+    complexity: 'Intermediate',
+    realWorldExample: '12-touch follow-up sequence that revives cold prospects',
+    successMetrics: ['40% deal recovery rate', '90% positive response sentiment', '60% meeting conversion'],
+    roi: '300% increase in closed deals'
+  },
+  {
+    id: 'handle-objections-instantly',
+    category: 'Sales',
+    title: 'Handle objections instantly',
+    description: 'AI responses to common sales objections in real-time',
+    priority: 'Medium',
+    agentsRequired: ['Objection Handler Agent', 'Response Generator Agent', 'Sales Coach Agent'],
+    toolsNeeded: ['gong', 'chorus', 'hubspot'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Turn 70% of objections into continued conversations',
+    complexity: 'Intermediate',
+    realWorldExample: 'Instant responses to "too expensive", "need to think about it", "not the right time"',
+    successMetrics: ['70% objection conversion', '90% response accuracy', '50% faster resolution'],
+    roi: '250% improvement in deal progression'
+  },
+  {
+    id: 'research-prospects-deep',
+    category: 'Sales',
+    title: 'Research prospects deeply before calls',
+    description: 'Complete intelligence dossier on every prospect automatically',
+    priority: 'Medium',
+    agentsRequired: ['Research Agent', 'Social Intel Agent', 'Company Analyzer Agent'],
+    toolsNeeded: ['apollo', 'clearbit', 'linkedin'],
+    estimatedSetupTime: '10 minutes',
+    businessImpact: 'Walk into every call completely prepared with key insights',
+    complexity: 'Simple',
+    realWorldExample: 'Full prospect dossier: recent news, mutual connections, pain points, budget',
+    successMetrics: ['100% prep coverage', '85% conversation relevance', '40% faster rapport building'],
+    roi: '200% increase in call success rate'
+  },
+  {
+    id: 'price-proposals-dynamic',
+    category: 'Sales',
+    title: 'Price proposals dynamically',
+    description: 'Optimize pricing based on prospect profile and market conditions',
+    priority: 'Low',
+    agentsRequired: ['Pricing Agent', 'Negotiation Agent', 'Value Calculator Agent'],
+    toolsNeeded: ['pipedrive', 'pandadoc', 'stripe'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Maximize deal value while maintaining high close rates',
+    complexity: 'Advanced',
+    realWorldExample: 'Dynamic pricing based on company size, urgency, and competitive landscape',
+    successMetrics: ['20% higher deal values', '85% close rate maintenance', '90% pricing accuracy'],
+    roi: '150% increase in revenue per deal'
+  },
+  {
+    id: 'close-deals-accelerate',
+    category: 'Sales',
+    title: 'Accelerate deal closing',
+    description: 'Push deals through the pipeline faster with intelligent urgency',
+    priority: 'High',
+    agentsRequired: ['Deal Acceleration Agent', 'Urgency Creator Agent', 'Closer Agent'],
+    toolsNeeded: ['hubspot', 'docusign', 'pandadoc'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Close deals 50% faster with higher win rates',
+    complexity: 'Intermediate',
+    realWorldExample: 'Limited-time offers, strategic check-ins, and streamlined contract process',
+    successMetrics: ['50% faster close time', '20% higher win rate', '90% contract accuracy'],
+    roi: '400% improvement in sales velocity'
+  },
+  {
+    id: 'manage-pipeline-automatically',
+    category: 'Sales',
+    title: 'Manage your pipeline automatically',
+    description: 'Keep deals moving and organized without manual intervention',
+    priority: 'Medium',
+    agentsRequired: ['Pipeline Manager Agent', 'Stage Tracker Agent', 'Alert Agent'],
+    toolsNeeded: ['salesforce', 'pipedrive', 'hubspot'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Never lose track of a deal again - organized pipeline',
+    complexity: 'Simple',
+    realWorldExample: 'Auto-update deal stages, set reminders, flag stalled deals',
+    successMetrics: ['100% pipeline visibility', '90% stage accuracy', '80% fewer stalled deals'],
+    roi: '300% improvement in pipeline health'
+  },
+  {
+    id: 'upsell-existing-customers',
+    category: 'Sales',
+    title: 'Upsell existing customers',
+    description: 'Identify and pursue expansion opportunities in your customer base',
+    priority: 'Medium',
+    agentsRequired: ['Upsell Agent', 'Usage Analyzer Agent', 'Expansion Hunter Agent'],
+    toolsNeeded: ['stripe', 'mixpanel', 'hubspot'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Grow revenue 3x faster through strategic upselling',
+    complexity: 'Intermediate',
+    realWorldExample: 'Identify customers ready for premium features based on usage patterns',
+    successMetrics: ['30% upsell success rate', '3x revenue growth', '95% customer satisfaction'],
+    roi: '500% increase in customer lifetime value'
+  },
+  {
+    id: 'win-back-churned-customers',
+    category: 'Sales',
+    title: 'Win back churned customers',
+    description: 'Re-engage lost customers with compelling comeback offers',
+    priority: 'Low',
+    agentsRequired: ['Winback Agent', 'Churn Analyzer Agent', 'Offer Creator Agent'],
+    toolsNeeded: ['intercom', 'mixpanel', 'stripe'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Recover 25% of churned customers with targeted campaigns',
+    complexity: 'Intermediate',
+    realWorldExample: 'Personalized winback campaigns based on churn reasons and new features',
+    successMetrics: ['25% winback rate', '80% retention post-return', '60% revenue recovery'],
+    roi: '200% return on winback investment'
+  },
+
+  // MARKETING GOALS (8 goals)
+  {
+    id: 'nurture-sequences-auto',
+    category: 'Marketing',
+    title: 'Send nurture sequences automatically',
+    description: 'Run multi-step drip campaigns via email/SMS/WhatsApp without manual work',
+    priority: 'High',
+    agentsRequired: ['AI Journeys Agent', 'SMS Campaigner Agent', 'WhatsApp Nurturer Agent'],
+    toolsNeeded: ['gmail', 'twilio', 'whatsapp_business'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Nurture 1000+ leads simultaneously across 3 channels',
+    complexity: 'Intermediate',
+    realWorldExample: '30-day nurture sequence with educational content and case studies',
+    successMetrics: ['1000+ leads nurtured', '3 channels', '45% engagement'],
+    roi: '800% increase in lead nurturing capacity'
+  },
+  {
+    id: 'launch-campaigns-multi-channel',
+    category: 'Marketing',
+    title: 'Launch multi-channel campaigns',
+    description: 'Coordinate email, social, and paid campaigns from one command',
+    priority: 'High',
+    agentsRequired: ['Campaign Manager Agent', 'Content Creator Agent', 'Channel Coordinator Agent'],
+    toolsNeeded: ['mailchimp', 'facebook_ads', 'google_ads'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Launch coordinated campaigns across 5+ channels simultaneously',
+    complexity: 'Advanced',
+    realWorldExample: 'Product launch campaign: email sequence + social posts + paid ads + PR outreach',
+    successMetrics: ['5+ channels coordinated', '80% message consistency', '300% reach amplification'],
+    roi: '400% improvement in campaign effectiveness'
+  },
+  {
+    id: 'segment-audiences-smart',
+    category: 'Marketing',
+    title: 'Segment audiences intelligently',
+    description: 'Create dynamic audience segments based on behavior and intent',
+    priority: 'Medium',
+    agentsRequired: ['Segmentation Agent', 'Behavior Analyzer Agent', 'Intent Predictor Agent'],
+    toolsNeeded: ['mixpanel', 'segment', 'hubspot'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Double conversion rates with laser-targeted messaging',
+    complexity: 'Intermediate',
+    realWorldExample: 'Auto-segment by product interest, engagement level, and purchase readiness',
+    successMetrics: ['10+ dynamic segments', '100% personalization', '200% conversion improvement'],
+    roi: '300% increase in campaign ROI'
+  },
+  {
+    id: 'optimize-ad-spend',
+    category: 'Marketing',
+    title: 'Optimize ad spend automatically',
+    description: 'Reallocate budget to best-performing campaigns in real-time',
+    priority: 'High',
+    agentsRequired: ['Ad Optimizer Agent', 'Budget Manager Agent', 'Performance Tracker Agent'],
+    toolsNeeded: ['google_ads', 'facebook_ads', 'linkedin_ads'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Reduce cost per acquisition by 40% through smart optimization',
+    complexity: 'Advanced',
+    realWorldExample: 'Automatically shift budget from low-performing to high-converting campaigns',
+    successMetrics: ['40% lower CPA', '60% better ROAS', '90% optimization accuracy'],
+    roi: '250% improvement in ad efficiency'
+  },
+  {
+    id: 'create-viral-content',
+    category: 'Marketing',
+    title: 'Create viral content consistently',
+    description: 'Generate engaging content that drives shares and engagement',
+    priority: 'Medium',
+    agentsRequired: ['Content Creator Agent', 'Viral Predictor Agent', 'Engagement Optimizer Agent'],
+    toolsNeeded: ['buffer', 'canva', 'unsplash'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Generate content that gets 10x more engagement and shares',
+    complexity: 'Intermediate',
+    realWorldExample: 'Create LinkedIn posts that get 500+ likes and 50+ comments consistently',
+    successMetrics: ['10x engagement increase', '500+ shares per post', '80% content hit rate'],
+    roi: '600% improvement in organic reach'
+  },
+  {
+    id: 'track-competitors-smart',
+    category: 'Marketing',
+    title: 'Track competitors intelligently',
+    description: 'Monitor competitor moves and opportunities automatically',
+    priority: 'Low',
+    agentsRequired: ['Competitor Monitor Agent', 'Opportunity Spotter Agent', 'Strategy Advisor Agent'],
+    toolsNeeded: ['similarweb', 'ahrefs', 'google_alerts'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Stay ahead of competition with real-time intelligence',
+    complexity: 'Simple',
+    realWorldExample: 'Get alerts when competitors launch new features, change pricing, or hire key people',
+    successMetrics: ['100% competitor coverage', '24hr intelligence lag', '90% opportunity identification'],
+    roi: '200% competitive advantage improvement'
+  },
+  {
+    id: 'personalize-website-dynamic',
+    category: 'Marketing',
+    title: 'Personalize website dynamically',
+    description: 'Show different content to different visitors based on their profile',
+    priority: 'Medium',
+    agentsRequired: ['Personalization Agent', 'Visitor Analyzer Agent', 'Content Swapper Agent'],
+    toolsNeeded: ['optimizely', 'unbounce', 'hotjar'],
+    estimatedSetupTime: '35 minutes',
+    businessImpact: 'Increase website conversion by 150% through personalization',
+    complexity: 'Advanced',
+    realWorldExample: 'Show SaaS pricing to tech visitors, consulting services to enterprises',
+    successMetrics: ['150% conversion increase', '80% personalization accuracy', '90% visitor satisfaction'],
+    roi: '400% improvement in website ROI'
+  },
+  {
+    id: 'manage-brand-reputation',
+    category: 'Marketing',
+    title: 'Manage brand reputation automatically',
+    description: 'Monitor and respond to brand mentions across the internet',
+    priority: 'Low',
+    agentsRequired: ['Reputation Manager Agent', 'Sentiment Analyzer Agent', 'Response Generator Agent'],
+    toolsNeeded: ['mention', 'brandwatch', 'hootsuite'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Maintain positive brand image with 24/7 monitoring',
+    complexity: 'Intermediate',
+    realWorldExample: 'Auto-respond to negative reviews, amplify positive mentions, track sentiment trends',
+    successMetrics: ['24/7 monitoring coverage', '90% positive sentiment maintenance', '85% response rate'],
+    roi: '300% improvement in brand health'
+  },
+
+  // RELATIONSHIP GOALS (8 goals)
+  {
+    id: 'summarize-lead-history',
+    category: 'Relationship',
+    title: 'Summarize lead history instantly',
+    description: 'Get complete timeline and context for any prospect in seconds',
+    priority: 'High',
+    agentsRequired: ['Timeline Logger Agent', 'Structured Output Agent', 'Command Analyzer Agent'],
+    toolsNeeded: ['supabase', 'hubspot', 'gmail'],
+    estimatedSetupTime: '5 minutes',
+    businessImpact: 'Never lose context in sales conversations again',
+    complexity: 'Simple',
+    realWorldExample: 'Ask "Tell me about John Smith" and get full interaction history instantly',
+    successMetrics: ['Sub-3 second response', '100% context retention', '95% accuracy'],
+    roi: '800% improvement in conversation quality'
+  },
+  {
+    id: 'remember-conversation-context',
+    category: 'Relationship',
+    title: 'Remember conversation context perfectly',
+    description: 'Never repeat questions or lose track of what was discussed',
+    priority: 'High',
+    agentsRequired: ['Memory Agent', 'Context Tracker Agent', 'Conversation Mapper Agent'],
+    toolsNeeded: ['notion', 'obsidian', 'roam'],
+    estimatedSetupTime: '10 minutes',
+    businessImpact: 'Build stronger relationships through perfect memory',
+    complexity: 'Simple',
+    realWorldExample: 'Remember that John mentioned his daughter\'s graduation 6 months ago',
+    successMetrics: ['100% context retention', '90% personal detail recall', '85% relationship satisfaction'],
+    roi: '400% improvement in relationship depth'
+  },
+  {
+    id: 'track-relationship-health',
+    category: 'Relationship',
+    title: 'Track relationship health automatically',
+    description: 'Monitor engagement levels and relationship strength over time',
+    priority: 'Medium',
+    agentsRequired: ['Relationship Scorer Agent', 'Engagement Tracker Agent', 'Health Monitor Agent'],
+    toolsNeeded: ['pipedrive', 'mixpanel', 'intercom'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Prevent relationship decay before it affects deals',
+    complexity: 'Intermediate',
+    realWorldExample: 'Alert when VIP customer engagement drops 40% over 30 days',
+    successMetrics: ['100% relationship visibility', '85% decay prediction accuracy', '70% relationship recovery rate'],
+    roi: '250% improvement in customer retention'
+  },
+  {
+    id: 'personalize-outreach-deep',
+    category: 'Relationship',
+    title: 'Personalize outreach deeply',
+    description: 'Reference specific details that show you truly know the prospect',
+    priority: 'High',
+    agentsRequired: ['Personalization Agent', 'Detail Collector Agent', 'Message Crafter Agent'],
+    toolsNeeded: ['clearbit', 'fullcontact', 'apollo'],
+    estimatedSetupTime: '12 minutes',
+    businessImpact: 'Get 3x higher response rates through genuine personalization',
+    complexity: 'Intermediate',
+    realWorldExample: 'Reference their recent LinkedIn post, company news, and mutual connections',
+    successMetrics: ['3x response rate improvement', '90% personalization accuracy', '80% message relevance'],
+    roi: '500% improvement in outreach effectiveness'
+  },
+  {
+    id: 'identify-decision-makers',
+    category: 'Relationship',
+    title: 'Identify decision makers automatically',
+    description: 'Map org charts and find who really makes the buying decisions',
+    priority: 'Medium',
+    agentsRequired: ['Org Chart Agent', 'Decision Mapper Agent', 'Influence Analyzer Agent'],
+    toolsNeeded: ['zoominfo', 'apollo', 'linkedin'],
+    estimatedSetupTime: '18 minutes',
+    businessImpact: 'Reach the right people faster and close deals quicker',
+    complexity: 'Intermediate',
+    realWorldExample: 'Automatically identify the VP of Engineering who approves software purchases',
+    successMetrics: ['95% decision maker accuracy', '60% faster deal progression', '40% higher close rate'],
+    roi: '300% improvement in sales efficiency'
+  },
+  {
+    id: 'build-champion-network',
+    category: 'Relationship',
+    title: 'Build champion network systematically',
+    description: 'Identify and nurture internal advocates at target accounts',
+    priority: 'Medium',
+    agentsRequired: ['Champion Identifier Agent', 'Advocate Nurturer Agent', 'Network Mapper Agent'],
+    toolsNeeded: ['linkedin', 'outreach', 'salesforce'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Win deals through internal advocates who sell for you',
+    complexity: 'Advanced',
+    realWorldExample: 'Turn satisfied users into champions who influence purchasing decisions',
+    successMetrics: ['3+ champions per target account', '80% advocate conversion rate', '50% faster deal closing'],
+    roi: '400% improvement in deal win rate'
+  },
+  {
+    id: 'maintain-relationships-dormant',
+    category: 'Relationship',
+    title: 'Maintain dormant relationships',
+    description: 'Keep in touch with past prospects and customers automatically',
+    priority: 'Low',
+    agentsRequired: ['Relationship Maintainer Agent', 'Touch Point Agent', 'Value Provider Agent'],
+    toolsNeeded: ['mailchimp', 'buffer', 'calendly'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Reactivate 30% of dormant relationships into new opportunities',
+    complexity: 'Intermediate',
+    realWorldExample: 'Quarterly check-ins with value-add content and industry insights',
+    successMetrics: ['30% reactivation rate', '90% positive response', '60% meeting conversion'],
+    roi: '200% return on relationship investment'
+  },
+  {
+    id: 'handle-customer-success',
+    category: 'Relationship',
+    title: 'Handle customer success proactively',
+    description: 'Ensure customers get value and expand their usage over time',
+    priority: 'High',
+    agentsRequired: ['Success Manager Agent', 'Usage Optimizer Agent', 'Satisfaction Monitor Agent'],
+    toolsNeeded: ['intercom', 'mixpanel', 'zendesk'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Reduce churn by 70% and increase expansion revenue by 200%',
+    complexity: 'Advanced',
+    realWorldExample: 'Proactive outreach when usage drops, success milestone celebrations, expansion offers',
+    successMetrics: ['70% churn reduction', '200% expansion growth', '95% satisfaction score'],
+    roi: '600% improvement in customer lifetime value'
+  },
+
+  // AUTOMATION GOALS (8 goals)
+  {
+    id: 'automate-data-entry',
+    category: 'Automation',
+    title: 'Eliminate manual data entry completely',
+    description: 'Automatically capture and organize all prospect and customer data',
+    priority: 'High',
+    agentsRequired: ['Data Entry Agent', 'Form Filler Agent', 'CRM Updater Agent'],
+    toolsNeeded: ['zapier', 'hubspot', 'salesforce'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Save 10+ hours per week on manual data entry',
+    complexity: 'Intermediate',
+    realWorldExample: 'Auto-populate CRM from business cards, emails, meeting notes, and web forms',
+    successMetrics: ['100% automation rate', '99% data accuracy', '10+ hours saved weekly'],
+    roi: '1000% time savings ROI'
+  },
+  {
+    id: 'sync-tools-automatically',
+    category: 'Automation',
+    title: 'Sync all your tools automatically',
+    description: 'Keep data consistent across CRM, email, calendar, and project tools',
+    priority: 'Medium',
+    agentsRequired: ['Sync Agent', 'Data Mapper Agent', 'Conflict Resolver Agent'],
+    toolsNeeded: ['zapier', 'integromat', 'pipedream'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Never worry about inconsistent data across platforms again',
+    complexity: 'Advanced',
+    realWorldExample: 'Update in HubSpot automatically syncs to Slack, Calendar, and project management',
+    successMetrics: ['100% data consistency', '99% sync reliability', '80% fewer manual updates'],
+    roi: '400% improvement in data accuracy'
+  },
+  {
+    id: 'generate-reports-auto',
+    category: 'Automation',
+    title: 'Generate reports automatically',
+    description: 'Create comprehensive business reports without manual analysis',
+    priority: 'Medium',
+    agentsRequired: ['Report Generator Agent', 'Data Analyst Agent', 'Insight Extractor Agent'],
+    toolsNeeded: ['tableau', 'power_bi', 'google_analytics'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Get weekly executive reports without spending hours on analysis',
+    complexity: 'Intermediate',
+    realWorldExample: 'Automated weekly sales report with trends, forecasts, and recommendations',
+    successMetrics: ['Weekly automated reports', '95% accuracy', '5+ hours saved per report'],
+    roi: '300% time savings on reporting'
+  },
+  {
+    id: 'backup-organize-data',
+    category: 'Automation',
+    title: 'Backup and organize data intelligently',
+    description: 'Ensure data security with automated backup and smart organization',
+    priority: 'Low',
+    agentsRequired: ['Backup Agent', 'Data Organizer Agent', 'Security Monitor Agent'],
+    toolsNeeded: ['google_drive', 'dropbox', 'aws_s3'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Never lose important data and find files instantly',
+    complexity: 'Simple',
+    realWorldExample: 'Daily backups with smart folder organization and duplicate removal',
+    successMetrics: ['100% backup reliability', '99% data recovery rate', '90% faster file finding'],
+    roi: '500% improvement in data security'
+  },
+  {
+    id: 'handle-routine-tasks',
+    category: 'Automation',
+    title: 'Handle routine tasks while you sleep',
+    description: 'Automate recurring business processes for 24/7 operation',
+    priority: 'High',
+    agentsRequired: ['Task Manager Agent', 'Process Automator Agent', 'Quality Controller Agent'],
+    toolsNeeded: ['zapier', 'ifttt', 'microsoft_flow'],
+    estimatedSetupTime: '35 minutes',
+    businessImpact: 'Run your business operations 24/7 without human intervention',
+    complexity: 'Advanced',
+    realWorldExample: 'Automated invoice processing, follow-up emails, and report generation',
+    successMetrics: ['24/7 operation', '95% task completion rate', '20+ hours saved weekly'],
+    roi: '800% improvement in operational efficiency'
+  },
+  {
+    id: 'monitor-systems-proactive',
+    category: 'Automation',
+    title: 'Monitor systems proactively',
+    description: 'Get alerts before problems become emergencies',
+    priority: 'Medium',
+    agentsRequired: ['System Monitor Agent', 'Alert Manager Agent', 'Issue Predictor Agent'],
+    toolsNeeded: ['datadog', 'new_relic', 'pingdom'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Prevent downtime and resolve issues before customers notice',
+    complexity: 'Intermediate',
+    realWorldExample: 'Automated monitoring of website, CRM, and email systems with smart alerts',
+    successMetrics: ['99% uptime', '90% issue prevention', '50% faster resolution time'],
+    roi: '400% improvement in system reliability'
+  },
+  {
+    id: 'optimize-workflows-continuous',
+    category: 'Automation',
+    title: 'Optimize workflows continuously',
+    description: 'Automatically improve processes based on performance data',
+    priority: 'Low',
+    agentsRequired: ['Workflow Optimizer Agent', 'Efficiency Analyzer Agent', 'Process Improver Agent'],
+    toolsNeeded: ['process_street', 'notion', 'airtable'],
+    estimatedSetupTime: '40 minutes',
+    businessImpact: 'Get 20% more efficient every month through continuous optimization',
+    complexity: 'Advanced',
+    realWorldExample: 'AI identifies bottlenecks and suggests process improvements automatically',
+    successMetrics: ['20% monthly efficiency gains', '90% optimization accuracy', '80% implementation success'],
+    roi: '600% compound efficiency improvement'
+  },
+  {
+    id: 'scale-operations-smart',
+    category: 'Automation',
+    title: 'Scale operations intelligently',
+    description: 'Grow your business without proportionally increasing overhead',
+    priority: 'Medium',
+    agentsRequired: ['Scaling Agent', 'Resource Optimizer Agent', 'Growth Manager Agent'],
+    toolsNeeded: ['aws', 'kubernetes', 'terraform'],
+    estimatedSetupTime: '45 minutes',
+    businessImpact: 'Handle 10x growth with only 2x increase in operational complexity',
+    complexity: 'Advanced',
+    realWorldExample: 'Auto-scale customer support, sales processes, and technical infrastructure',
+    successMetrics: ['10x growth capacity', '50% overhead reduction', '95% scaling success rate'],
+    roi: '1000% improvement in scalability efficiency'
+  },
+
+  // ANALYTICS GOALS (6 goals)
+  {
+    id: 'forecast-revenue',
+    category: 'Analytics',
+    title: 'Forecast revenue accurately',
+    description: 'Predict future revenue with machine learning models',
+    priority: 'High',
+    agentsRequired: ['Forecasting Agent', 'Trend Analyzer Agent', 'Model Trainer Agent'],
+    toolsNeeded: ['tableau', 'python', 'tensorflow'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Make confident business decisions with 90%+ accurate forecasts',
+    complexity: 'Advanced',
+    realWorldExample: 'Predict next quarter revenue within 5% accuracy using historical data and trends',
+    successMetrics: ['90% forecast accuracy', '3-month prediction horizon', '95% confidence intervals'],
+    roi: '300% improvement in planning accuracy'
+  },
+  {
+    id: 'analyze-customer-behavior',
+    category: 'Analytics',
+    title: 'Analyze customer behavior patterns',
+    description: 'Understand how customers interact with your business at scale',
+    priority: 'Medium',
+    agentsRequired: ['Behavior Analyst Agent', 'Pattern Recognition Agent', 'Insight Generator Agent'],
+    toolsNeeded: ['mixpanel', 'amplitude', 'hotjar'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Optimize customer experience based on actual usage patterns',
+    complexity: 'Intermediate',
+    realWorldExample: 'Identify why customers churn and which features drive retention',
+    successMetrics: ['100% customer journey mapping', '85% pattern detection accuracy', '70% optimization success'],
+    roi: '400% improvement in customer understanding'
+  },
+  {
+    id: 'track-campaign-roi',
+    category: 'Analytics',
+    title: 'Track campaign ROI automatically',
+    description: 'Measure the true impact of all your marketing efforts',
+    priority: 'High',
+    agentsRequired: ['ROI Tracker Agent', 'Attribution Modeler Agent', 'Performance Analyzer Agent'],
+    toolsNeeded: ['google_analytics', 'facebook_pixel', 'utm_tracking'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Know exactly which campaigns drive revenue and optimize accordingly',
+    complexity: 'Intermediate',
+    realWorldExample: 'Track every touchpoint from initial ad click to final purchase',
+    successMetrics: ['100% attribution accuracy', '90% ROI measurement precision', '80% optimization improvement'],
+    roi: '500% improvement in marketing efficiency'
+  },
+  {
+    id: 'identify-growth-opportunities',
+    category: 'Analytics',
+    title: 'Identify growth opportunities automatically',
+    description: 'Spot untapped markets and expansion possibilities in your data',
+    priority: 'Medium',
+    agentsRequired: ['Opportunity Scout Agent', 'Market Analyzer Agent', 'Growth Strategist Agent'],
+    toolsNeeded: ['similarweb', 'google_trends', 'census_data'],
+    estimatedSetupTime: '35 minutes',
+    businessImpact: 'Discover new revenue streams and market opportunities',
+    complexity: 'Advanced',
+    realWorldExample: 'Find underserved customer segments and geographic expansion opportunities',
+    successMetrics: ['5+ opportunities per month', '80% viability rate', '200% growth potential identification'],
+    roi: '600% improvement in strategic planning'
+  },
+  {
+    id: 'predict-customer-churn',
+    category: 'Analytics',
+    title: 'Predict customer churn before it happens',
+    description: 'Identify at-risk customers and take preventive action',
+    priority: 'High',
+    agentsRequired: ['Churn Predictor Agent', 'Risk Assessor Agent', 'Intervention Planner Agent'],
+    toolsNeeded: ['mixpanel', 'intercom', 'stripe'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Reduce churn by 60% through early intervention',
+    complexity: 'Advanced',
+    realWorldExample: 'Alert when customers show early signs of disengagement or dissatisfaction',
+    successMetrics: ['85% churn prediction accuracy', '60% churn reduction', '90% intervention success'],
+    roi: '400% improvement in customer retention'
+  },
+  {
+    id: 'optimize-pricing-strategy',
+    category: 'Analytics',
+    title: 'Optimize pricing strategy dynamically',
+    description: 'Find the perfect price points for maximum revenue and growth',
+    priority: 'Medium',
+    agentsRequired: ['Pricing Optimizer Agent', 'Elasticity Analyzer Agent', 'Revenue Maximizer Agent'],
+    toolsNeeded: ['stripe', 'chargebee', 'price_testing'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Increase revenue by 25% without losing customers',
+    complexity: 'Advanced',
+    realWorldExample: 'Dynamic pricing based on demand, competition, and customer value',
+    successMetrics: ['25% revenue increase', '90% customer retention', '95% pricing accuracy'],
+    roi: '350% improvement in pricing efficiency'
+  },
+
+  // CONTENT GOALS (6 goals)
+  {
+    id: 'write-sales-emails',
+    category: 'Content',
+    title: 'Write converting sales emails automatically',
+    description: 'Generate personalized sales emails that get responses',
+    priority: 'High',
+    agentsRequired: ['Email Writer Agent', 'Personalization Agent', 'Subject Line Agent'],
+    toolsNeeded: ['gmail', 'mailchimp', 'hubspot'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Send 100+ personalized emails daily with 30%+ response rates',
+    complexity: 'Intermediate',
+    realWorldExample: 'Cold outreach emails, follow-ups, and nurture sequences that convert',
+    successMetrics: ['30% response rate', '100+ emails daily', '90% personalization accuracy'],
+    roi: '500% improvement in email effectiveness'
+  },
+  {
+    id: 'create-social-content',
+    category: 'Content',
+    title: 'Create engaging social media content',
+    description: 'Generate posts that drive engagement across all social platforms',
+    priority: 'Medium',
+    agentsRequired: ['Social Content Agent', 'Engagement Optimizer Agent', 'Platform Adapter Agent'],
+    toolsNeeded: ['buffer', 'hootsuite', 'canva'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Maintain active social presence with 10x more engaging content',
+    complexity: 'Intermediate',
+    realWorldExample: 'LinkedIn posts, Twitter threads, and Instagram content that gets shares',
+    successMetrics: ['10x engagement increase', '5+ posts per platform daily', '80% content hit rate'],
+    roi: '400% improvement in social media ROI'
+  },
+  {
+    id: 'generate-blog-articles',
+    category: 'Content',
+    title: 'Generate SEO-optimized blog articles',
+    description: 'Create comprehensive blog content that ranks and converts',
+    priority: 'Medium',
+    agentsRequired: ['Blog Writer Agent', 'SEO Optimizer Agent', 'Research Agent'],
+    toolsNeeded: ['wordpress', 'ahrefs', 'grammarly'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Publish 4+ high-quality blog posts weekly that drive organic traffic',
+    complexity: 'Intermediate',
+    realWorldExample: '2000+ word articles optimized for target keywords and user intent',
+    successMetrics: ['4+ posts weekly', '90% SEO optimization', '200% organic traffic increase'],
+    roi: '300% improvement in content marketing ROI'
+  },
+  {
+    id: 'craft-proposals-winning',
+    category: 'Content',
+    title: 'Craft winning proposals automatically',
+    description: 'Generate compelling business proposals that close deals',
+    priority: 'High',
+    agentsRequired: ['Proposal Writer Agent', 'Value Articulator Agent', 'Objection Handler Agent'],
+    toolsNeeded: ['pandadoc', 'proposify', 'docusign'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Create proposals that win 60% more deals with 80% less effort',
+    complexity: 'Advanced',
+    realWorldExample: 'Customized proposals with pricing, timelines, and compelling value propositions',
+    successMetrics: ['60% higher win rate', '80% time savings', '95% proposal quality'],
+    roi: '400% improvement in proposal effectiveness'
+  },
+  {
+    id: 'develop-case-studies',
+    category: 'Content',
+    title: 'Develop compelling case studies',
+    description: 'Transform customer success stories into powerful sales tools',
+    priority: 'Low',
+    agentsRequired: ['Case Study Agent', 'Story Crafter Agent', 'Results Highlighter Agent'],
+    toolsNeeded: ['notion', 'canva', 'loom'],
+    estimatedSetupTime: '35 minutes',
+    businessImpact: 'Create 2+ case studies monthly that increase close rates by 40%',
+    complexity: 'Intermediate',
+    realWorldExample: 'Customer success stories with metrics, quotes, and compelling narratives',
+    successMetrics: ['2+ case studies monthly', '40% close rate increase', '90% customer approval'],
+    roi: '250% improvement in social proof effectiveness'
+  },
+  {
+    id: 'produce-video-scripts',
+    category: 'Content',
+    title: 'Produce engaging video scripts',
+    description: 'Create scripts for sales videos, demos, and educational content',
+    priority: 'Low',
+    agentsRequired: ['Script Writer Agent', 'Video Strategist Agent', 'Engagement Expert Agent'],
+    toolsNeeded: ['loom', 'vidyard', 'vimeo'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Create video content that converts 300% better than text',
+    complexity: 'Intermediate',
+    realWorldExample: 'Product demo scripts, explainer videos, and customer testimonial guides',
+    successMetrics: ['300% better conversion', '10+ scripts weekly', '85% engagement rate'],
+    roi: '350% improvement in video content ROI'
+  },
+
+  // ADMIN GOALS (4 goals)
+  {
+    id: 'clean-crm-data',
+    category: 'Admin',
+    title: 'Clean CRM data automatically',
+    description: 'Remove duplicates, fix formatting, and ensure data quality',
+    priority: 'Medium',
+    agentsRequired: ['Data Cleaner Agent', 'Duplicate Finder Agent', 'Format Standardizer Agent'],
+    toolsNeeded: ['hubspot', 'salesforce', 'pipedrive'],
+    estimatedSetupTime: '20 minutes',
+    businessImpact: 'Maintain 99% data quality without manual effort',
+    complexity: 'Intermediate',
+    realWorldExample: 'Automatically merge duplicates, standardize formats, and validate contact info',
+    successMetrics: ['99% data quality', '95% duplicate removal', '90% format consistency'],
+    roi: '400% improvement in data reliability'
+  },
+  {
+    id: 'manage-team-performance',
+    category: 'Admin',
+    title: 'Manage team performance intelligently',
+    description: 'Track productivity and provide coaching recommendations',
+    priority: 'Medium',
+    agentsRequired: ['Performance Tracker Agent', 'Coaching Agent', 'Goal Setter Agent'],
+    toolsNeeded: ['slack', 'asana', 'lattice'],
+    estimatedSetupTime: '25 minutes',
+    businessImpact: 'Improve team productivity by 40% through data-driven coaching',
+    complexity: 'Intermediate',
+    realWorldExample: 'Track activity, identify improvement areas, and suggest personalized coaching',
+    successMetrics: ['40% productivity increase', '90% goal achievement', '85% team satisfaction'],
+    roi: '300% improvement in team effectiveness'
+  },
+  {
+    id: 'handle-compliance-auto',
+    category: 'Admin',
+    title: 'Handle compliance automatically',
+    description: 'Ensure GDPR, CCPA, and industry compliance without manual work',
+    priority: 'High',
+    agentsRequired: ['Compliance Monitor Agent', 'Data Protection Agent', 'Audit Trail Agent'],
+    toolsNeeded: ['onerust', 'truearc', 'gdpr_tools'],
+    estimatedSetupTime: '30 minutes',
+    businessImpact: 'Maintain 100% compliance while reducing legal risk',
+    complexity: 'Advanced',
+    realWorldExample: 'Automatic data retention, consent management, and audit trail generation',
+    successMetrics: ['100% compliance rate', '90% risk reduction', '80% audit efficiency'],
+    roi: '500% improvement in compliance efficiency'
+  },
+  {
+    id: 'organize-documents-smart',
+    category: 'Admin',
+    title: 'Organize documents intelligently',
+    description: 'Automatically categorize and file all business documents',
+    priority: 'Low',
+    agentsRequired: ['Document Organizer Agent', 'File Categorizer Agent', 'Search Optimizer Agent'],
+    toolsNeeded: ['google_drive', 'dropbox', 'notion'],
+    estimatedSetupTime: '15 minutes',
+    businessImpact: 'Find any document in under 10 seconds with intelligent organization',
+    complexity: 'Simple',
+    realWorldExample: 'Auto-categorize contracts, invoices, proposals, and marketing materials',
+    successMetrics: ['<10 second file finding', '95% organization accuracy', '80% storage optimization'],
+    roi: '300% improvement in document efficiency'
+  },
+
+  // AI-NATIVE GOALS (4 goals)
+  {
+    id: 'ai-powered-assistant',
+    category: 'AI-Native',
+    title: 'Deploy AI-powered business assistant',
+    description: 'Your personal business AI that handles complex tasks and decisions',
+    priority: 'High',
+    agentsRequired: ['Executive Assistant Agent', 'Decision Support Agent', 'Task Coordinator Agent'],
+    toolsNeeded: ['openai', 'langchain', 'vector_db'],
+    estimatedSetupTime: '45 minutes',
+    businessImpact: 'Get a virtual C-level assistant that works 24/7',
+    complexity: 'Advanced',
+    realWorldExample: 'AI handles scheduling, research, analysis, and provides strategic recommendations',
+    successMetrics: ['24/7 availability', '95% task completion', '90% decision accuracy'],
+    roi: '1000% improvement in executive productivity'
+  },
+  {
+    id: 'predictive-business-intelligence',
+    category: 'AI-Native',
+    title: 'Implement predictive business intelligence',
+    description: 'Anticipate market changes and business opportunities before they happen',
+    priority: 'Medium',
+    agentsRequired: ['Prediction Engine Agent', 'Market Analyst Agent', 'Opportunity Forecaster Agent'],
+    toolsNeeded: ['tensorflow', 'pytorch', 'databricks'],
+    estimatedSetupTime: '50 minutes',
+    businessImpact: 'Stay 6 months ahead of market trends and competition',
+    complexity: 'Advanced',
+    realWorldExample: 'Predict market shifts, customer behavior changes, and competitive moves',
+    successMetrics: ['6-month prediction accuracy', '85% trend identification', '70% opportunity capture'],
+    roi: '600% improvement in strategic advantage'
+  },
+  {
+    id: 'autonomous-business-optimization',
+    category: 'AI-Native',
+    title: 'Enable autonomous business optimization',
+    description: 'Let AI continuously optimize your entire business operation',
+    priority: 'Low',
+    agentsRequired: ['Optimization Engine Agent', 'Performance Monitor Agent', 'Strategy Executor Agent'],
+    toolsNeeded: ['reinforcement_learning', 'multi_agent_system', 'continuous_learning'],
+    estimatedSetupTime: '60 minutes',
+    businessImpact: 'Achieve compound 10% monthly improvements across all metrics',
+    complexity: 'Advanced',
+    realWorldExample: 'AI automatically optimizes pricing, processes, marketing, and operations',
+    successMetrics: ['10% monthly improvement', '95% optimization success', '90% autonomous operation'],
+    roi: '1200% compound improvement in business performance'
+  },
+  {
+    id: 'ai-driven-innovation',
+    category: 'AI-Native',
+    title: 'Drive innovation with AI insights',
+    description: 'Discover new products, services, and business models using AI',
+    priority: 'Low',
+    agentsRequired: ['Innovation Scout Agent', 'Idea Generator Agent', 'Market Validator Agent'],
+    toolsNeeded: ['gpt4', 'patent_databases', 'market_research'],
+    estimatedSetupTime: '40 minutes',
+    businessImpact: 'Generate 1+ validated business innovation opportunities monthly',
+    complexity: 'Advanced',
+    realWorldExample: 'AI analyzes market gaps and generates innovative solutions and business models',
+    successMetrics: ['1+ innovation per month', '80% validation success', '300% ROI potential'],
+    roi: '800% improvement in innovation pipeline'
+  }
+];
+
+// Helper functions
+export function getGoalsByCategory(category: string): Goal[] {
+  return allGoals.filter(goal => goal.category.toLowerCase() === category.toLowerCase());
+}
+
+export function getGoalsByPriority(priority: 'High' | 'Medium' | 'Low'): Goal[] {
+  return allGoals.filter(goal => goal.priority === priority);
+}
+
+export function getGoalsByComplexity(complexity: 'Simple' | 'Intermediate' | 'Advanced'): Goal[] {
+  return allGoals.filter(goal => goal.complexity === complexity);
+}
+
+export function getGoalsRequiringAgent(agentName: string): Goal[] {
+  return allGoals.filter(goal => 
+    goal.agentsRequired.some(agent => 
+      agent.toLowerCase().includes(agentName.toLowerCase())
+    )
+  );
+}
+
+export function getGoalsByContact(contact: any): Goal[] {
+  // Return contextually relevant goals based on contact data
+  const relevantGoals: Goal[] = [];
+  
+  if (contact.status === 'lead') {
+    relevantGoals.push(...getGoalsByCategory('sales').slice(0, 3));
+  }
+  
+  if (contact.lastContacted && new Date(contact.lastContacted) < new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)) {
+    const goal = allGoals.find(g => g.id === 'nurture-cold-leads');
+    if (goal) relevantGoals.push(goal);
+  }
+  
+  if (!contact.company) {
+    const goal = allGoals.find(g => g.id === 'research-prospects-deep');
+    if (goal) relevantGoals.push(goal);
+  }
+  
+  return relevantGoals;
+}

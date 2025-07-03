@@ -1,0 +1,103 @@
+Load your .env.local (project root) with all of these (Vite requires VITE_ prefixes):
+
+bash
+Copy
+Edit
+# .env.local
+VITE_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuc21hcnQtY3JtLnZpZGVvcmVjaXguaW8k
+VITE_CLERK_FRONTEND_API=clerk.smart-crm.videoremix.io
+VITE_CLERK_JS_URL=https://clerk.smart-crm.videoremix.io/npm/@clerk/clerk-js@5/dist/clerk.browser.js
+VITE_CLERK_DOMAIN=smart-crm.videoremix.io
+VITE_CLERK_IS_SATELLITE=true
+
+VITE_CLERK_SIGN_IN_URL=https://accounts.smart-crm.videoremix.io/sign-in
+VITE_CLERK_SIGN_UP_URL=https://accounts.smart-crm.videoremix.io/sign-up
+VITE_CLERK_UNAUTHORIZED_URL=https://accounts.smart-crm.videoremix.io/unauthorized-sign-in
+
+VITE_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=https://smart-crm.videoremix.io/dashboard
+VITE_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=https://smart-crm.videoremix.io/dashboard
+Restart your dev server after any changes to .env.local.
+
+Update your src/main.jsx (or index.tsx) to read and pass all of these into <ClerkProvider>:
+
+tsx
+Copy
+Edit
+// src/main.jsx
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+import { AIToolsProvider } from './components/AIToolsProvider.tsx';
+import { ClerkProvider } from '@clerk/clerk-react';
+import { BrandingProvider } from './branding/BrandingContext.tsx';
+
+const {
+  VITE_CLERK_PUBLISHABLE_KEY: publishableKey,
+  VITE_CLERK_FRONTEND_API: frontendApi,
+  VITE_CLERK_JS_URL: clerkJSUrl,
+  VITE_CLERK_DOMAIN: domain,
+  VITE_CLERK_IS_SATELLITE: isSatellite,
+  VITE_CLERK_SIGN_IN_URL: signInUrl,
+  VITE_CLERK_SIGN_UP_URL: signUpUrl,
+  VITE_CLERK_UNAUTHORIZED_URL: unauthorizedUrl,
+  VITE_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: signInFallbackRedirectUrl,
+  VITE_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: signUpFallbackRedirectUrl,
+} = import.meta.env;
+
+if (
+  !publishableKey ||
+  !frontendApi ||
+  !clerkJSUrl ||
+  !domain ||
+  typeof isSatellite === 'undefined'
+) {
+  throw new Error('Missing one or more Clerk environment variables in .env.local');
+}
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <ClerkProvider
+      publishableKey={publishableKey}
+      frontendApi={frontendApi}
+      clerkJSUrl={clerkJSUrl}
+      domain={domain}
+      isSatellite={isSatellite === 'true'}
+
+      // Hosted Account Portal URLs
+      signInUrl={signInUrl}
+      signUpUrl={signUpUrl}
+      unauthorizedUrl={unauthorizedUrl}
+
+      // Fallback redirects if no redirect_url query param
+      signInFallbackRedirectUrl={signInFallbackRedirectUrl}
+      signUpFallbackRedirectUrl={signUpFallbackRedirectUrl}
+    >
+      <BrandingProvider>
+        <AIToolsProvider>
+          <App />
+        </AIToolsProvider>
+      </BrandingProvider>
+    </ClerkProvider>
+  </StrictMode>
+);
+
+// page-load helper logic (no changes)
+window.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('content-ready');
+});
+window.addEventListener('load', () => {
+  document.documentElement.classList.add('page-loaded');
+  const loader = document.getElementById('initial-loader');
+  if (loader) {
+    loader.classList.add('hide-loader');
+    setTimeout(() => loader.remove(), 300);
+  }
+});
+Verify (in your browser’s Network tab) that:
+
+clerk.browser.js is loading from your custom domain (clerk.smart-crm.videoremix.io)
+
+None of the requests point to central-tortoise-21.clerk.accounts.dev
+
+Once that’s in place, your <SignIn> and <SignUp> components will initialize correctly against your Account Portal subdomain and all of your redirects will work as configured.
